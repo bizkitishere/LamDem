@@ -5,15 +5,50 @@
  */
 package bfh.ch.labdem;
 
+import bfh.ch.labdem.BfhChLabDem.ClientType;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+
 /**
- *
+ * Used to send messages to a MQTT broker
+ * 
  * @author Philippe Lüthi, Elia Kocher
  */
-public class Publisher {
+public class Publisher extends Client {
+
+    //client parameters
+    private MqttMessage message;
     
+    public Publisher(String protocol, String broker, String port, String topic, String will, ClientType type) throws MqttException {
+        super(protocol, broker, port, topic, will, type);
+    }
     
-    public Publisher(){
-        
+    @Override
+    public void connectToBroker() throws MqttException {
+        super.connectToBroker();
+        mqttClient.publish(TOPIC, "online".getBytes(), 1, true);
+    }
+    
+    /**
+     * sends a message to the broker for the publishers topic
+     * @param m message to send
+     * @throws MqttException 
+     */
+    public void Publish(String m) throws MqttException{
+        message = new MqttMessage(m.getBytes());
+        mqttClient.publish(TOPIC, message);
+    }
+    
+    /**
+     * sends a message to the broker for the publishers topic, with some customiseable parameters
+     * @param m message to send 
+     * @param qos the Quality of Service to deliver the message at. Valid values are 0, 1 or 2
+     * @param retained whether or not this message should be retained by the server
+     * @throws MqttException 
+     */
+    public void Publish(String m, int qos, boolean retained) throws MqttException{
+        message = new MqttMessage(m.getBytes());
+        mqttClient.publish(TOPIC, message.getPayload(), qos, retained);
     }
     
 }
