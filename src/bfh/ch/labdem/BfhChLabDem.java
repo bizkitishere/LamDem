@@ -5,12 +5,10 @@
  */
 package bfh.ch.labdem;
 
-import java.util.logging.FileHandler;
-import java.util.logging.Handler;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.eclipse.paho.client.mqttv3.MqttException;
-
 
 /**
  *
@@ -27,11 +25,30 @@ public class BfhChLabDem {
     private final static String TOPIC_APP = "/App";
     private final static String WILL = "offline";
     
+    //logpath
+    private final static String LOG_PATH = "log/log.log";
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-           
+        
+        try {
+            //set up logger
+            LabDemLogger ldLogger = new LabDemLogger(LOG_PATH);
+        } catch (IOException ex) {
+            //TODO can we do something?
+        }
+        
+        System.exit(0);
+        
+        //tries to load all data necessary for the performances
+        if(LoadAllData() != null){
+            //TODO reasonable error handling
+            System.out.println();
+        }
+        
+        
                 
         try {
             System.out.println("Creating Subscriber");
@@ -68,6 +85,17 @@ public class BfhChLabDem {
         
     }
     
+    /**
+     * loads all the relevant data for performances from the database
+     * @return String containing error details or null
+     */
+    public static String LoadAllData(){
+        return DB.loadAllData();
+    }
+    
+    /**
+     * enum containing the different client types
+     */
     public enum ClientType{
         Subscriber, Publisher
     }

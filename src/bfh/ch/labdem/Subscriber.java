@@ -6,6 +6,7 @@
 package bfh.ch.labdem;
 
 import bfh.ch.labdem.BfhChLabDem.ClientType;
+import java.util.logging.Level;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -53,6 +54,8 @@ public class Subscriber extends Client {
             //TODO implement
             System.out.println("Connection Lost...");
             System.out.println(thrwbl.getCause());
+            String m = DB.class.getName() + thrwbl.getCause().getMessage();
+            LabDemLogger.LOGGER.log(Level.SEVERE, m);
         }
 
         @Override
