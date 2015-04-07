@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bfh.ch.labdem;
+package bfh.ch.labdem.main;
 
-import bfh.ch.labdem.BfhChLabDem.ClientType;
+import bfh.ch.labdem.main.BfhChLabDem.ClientType;
 import java.net.URI;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;

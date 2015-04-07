@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bfh.ch.labdem;
+package bfh.ch.labdem.helper;
 
 import java.io.IOException;
 import java.util.logging.FileHandler;
@@ -20,10 +20,11 @@ public class LabDemLogger {
     
     public LabDemLogger(String path) throws IOException{
         
-        FileHandler fh = new FileHandler(path);
-        LOGGER.addHandler(fh);
+        FileHandler fh = new FileHandler(path, true);
         SimpleFormatter formatter = new SimpleFormatter();  
         fh.setFormatter(formatter);
+        
+        LOGGER.addHandler(fh);
         LOGGER.setUseParentHandlers(false);
 
         // the following statement is used to log any messages  

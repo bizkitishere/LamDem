@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bfh.ch.labdem;
+package bfh.ch.labdem.main;
 
-import bfh.ch.labdem.BfhChLabDem.ClientType;
+import bfh.ch.labdem.helper.DB;
+import bfh.ch.labdem.helper.LabDemLogger;
+import bfh.ch.labdem.main.BfhChLabDem.ClientType;
 import java.util.logging.Level;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -63,10 +65,11 @@ public class Subscriber extends Client {
         public void messageArrived(String string, MqttMessage mm) throws Exception {
             //TODO implement
             
-            //System.out.printf("Topic: (%s) Payload: (%s) Retained: (%b) \n", string, new String(mm.getPayload()), mm.isRetained());
+            System.out.printf("Topic: (%s) Payload: (%s) Retained: (%b) \n", string, new String(mm.getPayload()), mm.isRetained());
             
                                                 //performance, rolle, region, enter/exit
             //messages need to be in the format: "[int], [int], [int], [int]"
+            /*
             String message = new String(mm.getPayload());
             
             String[] tokens = message.split(";", -1);
@@ -75,6 +78,7 @@ public class Subscriber extends Client {
                 //numbers[i] = Integer.parseInt(tokens[i]);
                 System.out.println(t);
             }
+            */
         }
 
         @Override

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bfh.ch.labdem;
+package bfh.ch.labdem.helper;
 import java.sql.*;
 import java.util.logging.Level;
 

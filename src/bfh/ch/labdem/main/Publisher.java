@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bfh.ch.labdem;
+package bfh.ch.labdem.main;
 
-import bfh.ch.labdem.BfhChLabDem.ClientType;
+import bfh.ch.labdem.main.BfhChLabDem.ClientType;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
@@ -47,8 +47,7 @@ public class Publisher extends Client {
      * @throws MqttException 
      */
     public void Publish(String m, int qos, boolean retained) throws MqttException{
-        message = new MqttMessage(m.getBytes());
-        mqttClient.publish(TOPIC, message.getPayload(), qos, retained);
+        mqttClient.publish(TOPIC, m.getBytes(), qos, retained);
     }
     
 }

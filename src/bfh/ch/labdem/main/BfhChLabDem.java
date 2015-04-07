@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bfh.ch.labdem;
+package bfh.ch.labdem.main;
 
+import bfh.ch.labdem.helper.DB;
+import bfh.ch.labdem.helper.LabDemLogger;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,8 +20,8 @@ public class BfhChLabDem {
     
     //broker information
     private final static String PROTOCOL = "tcp";
-    private final static String BROKER = "broker.mqttdashboard.com"; //public broker, for test purposes
-    //private final static String BROKER = "147.87.117.73"; //LabDem broker
+    //private final static String BROKER = "broker.mqttdashboard.com"; //public broker, for test purposes
+    private final static String BROKER = "147.87.117.73"; //LabDem broker
     private final static String PORT = "1883";
     private final static String TOPIC_MAIN = "LabDem";
     private final static String TOPIC_APP = "/App";
@@ -40,7 +42,7 @@ public class BfhChLabDem {
             //TODO can we do something?
         }
         
-        System.exit(0);
+        //System.exit(0);
         
         //tries to load all data necessary for the performances
         if(LoadAllData() != null){
@@ -63,23 +65,15 @@ public class BfhChLabDem {
             System.out.println("Connecting to broker");
             p.connectToBroker();
             System.out.println("Publishing message");
+
             
-            
-            for (int i = 0; i < 10; i++) {
-                p.Publish(i + ";" + i + ";" + i + ";" + i);
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(BfhChLabDem.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            
-            s.disconnectFromBroker();
-            p.disconnectFromBroker();
+            //s.disconnectFromBroker();
+            //p.disconnectFromBroker();
             
             
         } catch (MqttException ex) {
-            Logger.getLogger(BfhChLabDem.class.getName()).log(Level.SEVERE, null, ex);
+            String m = DB.class.getName() + ex.getCause().getMessage();
+            LabDemLogger.LOGGER.log(Level.SEVERE, m);
         }
         
         
