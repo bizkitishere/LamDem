@@ -30,6 +30,7 @@ public abstract class Client {
     //client parameters
     final MqttClient mqttClient;
     
+    
     /**
      * 
      * @param protocol protocol to use

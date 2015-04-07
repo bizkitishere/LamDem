@@ -19,7 +19,7 @@ public class DB {
 
    //Database credentials
    static final String USER = "root";
-   static final String PASS = "";
+   static final String PASS = "root";
    
    //Query to load all data
    //TODO create this magical query
