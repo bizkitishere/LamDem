@@ -10,3 +10,12 @@ INFO: Created successfully
 Apr 07, 2015 9:58:49 AM bfh.ch.labdem.helper.LabDemLogger <init>
 INFO: Created successfully
 
+Apr 08, 2015 3:41:13 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+
+Apr 08, 2015 3:41:13 PM bfh.ch.labdem.helper.DB loadAllData
+SEVERE: bfh.ch.labdem.helper.DBCommunications link failure
+
+The last packet successfully received from the server was 1'428'500'473'875 milliseconds ago.  The last packet sent successfully to the server was 0 milliseconds ago.
+Apr 08, 2015 3:41:13 PM bfh.ch.labdem.main.BfhChLabDem main
+SEVERE: Could not load data from db

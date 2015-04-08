@@ -7,7 +7,6 @@ package bfh.ch.labdem.main;
 
 import bfh.ch.labdem.helper.DB;
 import bfh.ch.labdem.helper.LabDemLogger;
-import java.io.IOException;
 import java.util.logging.Level;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -26,30 +25,17 @@ public class BfhChLabDem {
     private final static String TOPIC_APP = "/App";
     private final static String WILL = "offline";
     
-    //logpath
-    private final static String LOG_PATH = "log/log.log";
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         
-        try {
-            //set up logger
-            LabDemLogger ldLogger = new LabDemLogger(LOG_PATH);
-        } catch (IOException ex) {
-            //TODO can we do something?
-        }
-        
-        //System.exit(0);
-        
         //tries to load all data necessary for the performances
         if(LoadAllData() != null){
-            //TODO reasonable error handling
-            System.out.println();
+            //TODO send message to client that server could not load data from db
+            //LabDemLogger.LOGGER.log(Level.SEVERE, "Could not load data from db");
         }
-        
-        
                 
         try {
             System.out.println("Creating Subscriber");
