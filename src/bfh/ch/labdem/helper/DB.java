@@ -40,11 +40,11 @@ public class DB {
         //db query
        sb = new StringBuilder();
        sb.append("SELECT * FROM daemonview");
-       sb.append(" WHERE Performance.id =").append(performanceId);
-       sb.append(" AND Region.id =").append(regionId);
-       sb.append(" AND Role.id =").append(roleId);
-       sb.append(" AND Scenario.enter =").append(enter);
-       sb.append(" GROUP BY Hardware.id");
+       sb.append(" WHERE performance.id =").append(performanceId);
+       sb.append(" AND region.id =").append(regionId);
+       sb.append(" AND role.id =").append(roleId);
+       sb.append(" AND scenario.enter =").append(enter);
+       sb.append(" GROUP BY hardware.id");
        
        List<Action> actions = new ArrayList<>();
        

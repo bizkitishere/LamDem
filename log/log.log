@@ -64,3 +64,40 @@ INFO: Created successfully
 Apr 09, 2015 3:40:28 PM bfh.ch.labdem.helper.DB getActions
 SEVERE: bfh.ch.labdem.helper.DB
 Table 'apodeixis_db.daemonview' doesn't exist
+Apr 09, 2015 3:47:14 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+
+Apr 09, 2015 3:47:14 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+Table 'apodeixis_db.daemonview' doesn't exist
+Apr 09, 2015 3:48:10 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+
+Apr 09, 2015 3:48:10 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+Unknown column 'Performance.id' in 'where clause'
+Apr 09, 2015 3:49:08 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+
+Apr 09, 2015 3:49:08 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+Unknown column 'performance.id' in 'where clause'
+Apr 09, 2015 4:09:18 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+
+
+Apr 09, 2015 4:09:18 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+Unknown column 'performance.id' in 'where clause'
+Apr 09, 2015 4:09:42 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+
+Apr 09, 2015 4:09:42 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+Unknown column 'performance.id' in 'where clause'
+Apr 09, 2015 4:24:09 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+
+Apr 09, 2015 4:24:09 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+Unknown column 'performance.id' in 'where clause'

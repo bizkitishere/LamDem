@@ -5,7 +5,6 @@
  */
 package bfh.ch.labdem.main;
 
-import bfh.ch.labdem.helper.DB;
 import bfh.ch.labdem.helper.LabDemLogger;
 import java.util.logging.Level;
 import org.eclipse.paho.client.mqttv3.MqttException;
