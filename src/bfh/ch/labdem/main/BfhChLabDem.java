@@ -32,11 +32,20 @@ public class BfhChLabDem {
     public static void main(String[] args) {
         
         //tries to load all data necessary for the performances
-        if(LoadAllData() != null){
+        //if(LoadAllData() != null){
             //TODO send message to client that server could not load data from db
             //LabDemLogger.LOGGER.log(Level.SEVERE, "Could not load data from db");
-        }
-                
+        //}
+              
+        LabDemDaemon lbd = new LabDemDaemon();
+        
+        lbd.run();
+        
+        lbd.getActions(1, 1, 1, true);
+        
+        System.exit(0);
+        
+        
         try {
             System.out.println("Creating Subscriber");
             Subscriber s = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_APP, WILL, ClientType.Subscriber);
@@ -57,7 +66,7 @@ public class BfhChLabDem {
             
             
         } catch (MqttException ex) {
-            String m = DB.class.getName() + ex.getCause().getMessage();
+            String m = BfhChLabDem.class.getName() + "\n" + ex.getMessage();
             LabDemLogger.LOGGER.log(Level.SEVERE, m);
         }
         
@@ -68,9 +77,12 @@ public class BfhChLabDem {
      * loads all the relevant data for performances from the database
      * @return String containing error details or null
      */
+    /*
     public static String LoadAllData(){
+        
         return DB.loadAllData();
     }
+    */
     
     /**
      * enum containing the different client types

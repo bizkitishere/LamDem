@@ -56,7 +56,7 @@ public class Subscriber extends Client {
             //TODO implement
             System.out.println("Connection Lost...");
             System.out.println(thrwbl.getCause());
-            String m = DB.class.getName() + thrwbl.getCause().getMessage();
+            String m = Subscriber.class.getName() + "\n" + thrwbl.getMessage();
             LabDemLogger.LOGGER.log(Level.SEVERE, m);
         }
 

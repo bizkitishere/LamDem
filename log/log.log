@@ -19,3 +19,48 @@ SEVERE: bfh.ch.labdem.helper.DBCommunications link failure
 The last packet successfully received from the server was 1'428'500'473'875 milliseconds ago.  The last packet sent successfully to the server was 0 milliseconds ago.
 Apr 08, 2015 3:41:13 PM bfh.ch.labdem.main.BfhChLabDem main
 SEVERE: Could not load data from db
+Apr 09, 2015 3:00:47 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+
+Apr 09, 2015 3:00:47 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+Apr 09, 2015 3:02:40 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+
+Apr 09, 2015 3:02:40 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB   null
+Apr 09, 2015 3:03:54 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+
+Apr 09, 2015 3:03:54 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB   You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.id =1AND Region.id =1AND Role.id =1AND Scenario.enter =trueGROUP BY Hardware.id' at line 1
+Apr 09, 2015 3:04:20 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+
+Apr 09, 2015 3:04:20 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.id =1AND Region.id =1AND Role.id =1AND Scenario.enter =trueGROUP BY Hardware.id' at line 1
+Apr 09, 2015 3:07:48 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+
+Apr 09, 2015 3:07:48 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.id =1AND Region.id =1AND Role.id =1AND Scenario.enter =trueGROUP BY Hardware.id' at line 1
+Apr 09, 2015 3:35:58 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+
+Apr 09, 2015 3:35:58 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.id =1AND Region.id =1AND Role.id =1AND Scenario.enter =trueGROUP BY Hardware.id' at line 1
+Apr 09, 2015 3:36:57 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+
+Apr 09, 2015 3:36:57 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.id =1AND Region.id =1AND Role.id =1AND Scenario.enter =trueGROUP BY Hardware.id' at line 1
+Apr 09, 2015 3:40:28 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+
+Apr 09, 2015 3:40:28 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+Table 'apodeixis_db.daemonview' doesn't exist
