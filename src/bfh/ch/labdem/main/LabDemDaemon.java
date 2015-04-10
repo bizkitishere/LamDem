@@ -25,7 +25,7 @@ public class LabDemDaemon implements Runnable{
     
     
     
-    public void getActions(int performanceId, int regionId, int roleId, boolean enter){
+    public void getActions(int performanceId, int regionId, int roleId, int enter){
         
         List<Action> actions = DB.getActions(performanceId, regionId, roleId, enter);
         

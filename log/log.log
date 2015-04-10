@@ -101,3 +101,46 @@ INFO: Created successfully
 Apr 09, 2015 4:24:09 PM bfh.ch.labdem.helper.DB getActions
 SEVERE: bfh.ch.labdem.helper.DB
 Unknown column 'performance.id' in 'where clause'
+Apr 10, 2015 1:12:25 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+
+Apr 10, 2015 1:12:25 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+Unknown column 'performance_id' in 'where clause'
+Apr 10, 2015 1:14:55 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+
+Apr 10, 2015 1:14:55 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+Unknown column 'performance_id' in 'where clause'
+Apr 10, 2015 1:17:22 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 10, 2015 1:17:22 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+Unknown column 'performance_id' in 'where clause'
+Apr 10, 2015 1:18:24 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 10, 2015 1:18:24 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+Column 'name' not found.
+Apr 10, 2015 1:19:06 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: 
+Created successfully
+Apr 10, 2015 1:19:06 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+Column 'name' not found.
+Apr 10, 2015 1:24:09 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 10, 2015 1:24:09 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+Unknown column 'hardware_id' in 'group statement'
+Apr 10, 2015 1:24:25 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 10, 2015 1:24:25 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+Unknown column 'hardware_id' in 'group statement'
+Apr 10, 2015 1:24:48 PM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 10, 2015 1:24:48 PM bfh.ch.labdem.helper.DB getActions
+SEVERE: bfh.ch.labdem.helper.DB
+Column 'type' not found.

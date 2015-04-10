@@ -30,7 +30,7 @@ public class LabDemLogger {
             LOGGER.setUseParentHandlers(false);
             
             // the following statement is used to log any messages
-            LOGGER.info("Created successfully\n");
+            LOGGER.info("Created successfully");
         } catch (IOException | SecurityException ex) {
             Logger.getLogger(LabDemLogger.class.getName()).log(Level.SEVERE, null, ex);
         }

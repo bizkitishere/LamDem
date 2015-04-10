@@ -40,7 +40,7 @@ public class BfhChLabDem {
         
         lbd.run();
         
-        lbd.getActions(1, 1, 1, true);
+        lbd.getActions(1, 1, 1, 1);
         
         System.exit(0);
         

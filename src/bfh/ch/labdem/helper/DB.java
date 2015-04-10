@@ -31,20 +31,22 @@ public class DB {
      * @param performanceId id of performance
      * @param regionId id of region
      * @param roleId id of role
-     * @param enter true for enter
+     * @param enter 1 for enter, 0 for leave
      * @return List<Action> containing all Actions or null
      */
-    //public static String getActions(int performanceId, int regionId, int roleId, boolean enter){
-    public static List<Action> getActions(int performanceId, int regionId, int roleId, boolean enter){
+    //public static String getActions(int performanceId, int regionId, int roleId, int enter){
+    public static List<Action> getActions(int performanceId, int regionId, int roleId, int enter){
        
         //db query
        sb = new StringBuilder();
        sb.append("SELECT * FROM daemonview");
-       sb.append(" WHERE performance.id =").append(performanceId);
-       sb.append(" AND region.id =").append(regionId);
-       sb.append(" AND role.id =").append(roleId);
-       sb.append(" AND scenario.enter =").append(enter);
-       sb.append(" GROUP BY hardware.id");
+       sb.append(" WHERE performance_id =").append(performanceId);
+       sb.append(" AND region_id =").append(regionId);
+       sb.append(" AND role_id =").append(roleId);
+       sb.append(" AND enter =").append(enter);
+       sb.append(" GROUP BY hw_id");
+       
+       System.out.println(sb.toString());
        
        List<Action> actions = new ArrayList<>();
        
@@ -66,19 +68,19 @@ public class DB {
                     String command = rs.getString("command");
                     String value = rs.getString("value");
                     int delay = rs.getInt("delay");
-                    int type = rs.getInt("type");
+                    int type = rs.getInt("type_id");
                     
                     action = new Action(name, command, value, delay, type);
                     actions.add(action);
                     
                     //Display values
                     //TODO create return objects filled with data...
-                    System.out.print(", name: " + name);
+                    System.out.print("name: " + name);
                     System.out.print(", command: " + command);
                     System.out.print(", value: " + value);
                     System.out.print(", delay: " + delay);
                     System.out.print(", type: " + type);
-                    System.out.println("");
+                    System.out.println(" ");
                     
                 }
                 //end of data
