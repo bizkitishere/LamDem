@@ -11,30 +11,21 @@ package model;
  */
 public class Action {
     
-    //private int id;
     private final String name;
     private final String command;
     private final String value;
     private final int delay;
-    private final int type;
+    private final int typeId;
     
-    public Action(String name, String command, String value, int delay, int type){
+    public Action(String name, String command, String value, int delay, int typeId){
         //this.id = id;
         this.name = name;
         this.command = command;
         this.value = value;
         this.delay = delay;
-        this.type = type;
+        this.typeId = typeId;        
     }
-
-    /**
-     * @return the id
-     */
-    /*
-    public int getId() {
-        return id;
-    }
-    */
+    
 
     /**
      * @return the name
@@ -65,10 +56,10 @@ public class Action {
     }
     
     /**
-     * @return the type
+     * @return the type id
      */
-    public int getType() {
-        return type;
+    public int getTypeId() {
+        return typeId;
     }
     
 }

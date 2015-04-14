@@ -7,7 +7,6 @@ package bfh.ch.labdem.main;
 
 import bfh.ch.labdem.helper.LabDemLogger;
 import bfh.ch.labdem.main.BfhChLabDem.ClientType;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -22,7 +21,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 public class Subscriber extends Client {
     
     //client parameters
-    private final MqttCallback MESSAGE_HABDLER = new MQTTMessageHandler();
+    private final MqttCallback MESSAGE_HANDLER = new MQTTMessageHandler();
     
     public Subscriber(String protocol, String broker, String port, String topic, String will, ClientType type) throws MqttException{
         super(protocol, broker, port, topic, will, type);
@@ -33,7 +32,7 @@ public class Subscriber extends Client {
      * @throws MqttException 
      */
     public void subscribe() throws MqttException{
-        mqttClient.setCallback(MESSAGE_HABDLER);
+        mqttClient.setCallback(MESSAGE_HANDLER);
         mqttClient.subscribe(TOPIC);
     }
     
@@ -77,7 +76,8 @@ public class Subscriber extends Client {
             
             String message = new String(mm.getPayload());
             
-            if(message.equals("online") || message.equals("offline")) return;
+            if(message.equals(BfhChLabDem.MQTTMessages.Online.toString()) 
+            || message.equals(BfhChLabDem.MQTTMessages.Offline.toString())) return;
             
             String[] tokens = message.split(";", -1);
             //int[] numbers = new int[tokens.length];
@@ -97,7 +97,7 @@ public class Subscriber extends Client {
                 enter = Integer.parseInt(tokens[3]);
                 BfhChLabDem.getActions(performanceId, regionId, roleId, enter);
             }catch (NumberFormatException ex){
-                String m = Subscriber.class.getName() + "\n" + ex.getMessage();
+                String m = Subscriber.class.getName() + " - " + ex.getMessage();
                 LabDemLogger.LOGGER.log(Level.WARNING, m);
             }
             

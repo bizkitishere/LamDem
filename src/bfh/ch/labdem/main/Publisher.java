@@ -26,7 +26,7 @@ public class Publisher extends Client {
     @Override
     public void connectToBroker() throws MqttException {
         super.connectToBroker();
-        mqttClient.publish(TOPIC, "online".getBytes(), 1, true);
+        mqttClient.publish(TOPIC, BfhChLabDem.MQTTMessages.Online.toString().getBytes(), 1, true);
     }
     
     /**

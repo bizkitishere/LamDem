@@ -19,10 +19,11 @@ public class DB {
    //JDBC driver name and database URL
    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
    private static final String DB_URL = "jdbc:mysql://localhost/apodeixis_db";
+   //private static final String DB_URL = "jdbc:mysql://147.87.117.73/apodeixis_db";
 
    //Database credentials
-   private static final String USER = "root";
-   private static final String PASS = "root";
+   private static final String USER = "apodeixisUser";
+   private static final String PASS = "userPassApo15";   
    
    private static StringBuilder sb;
 
@@ -68,9 +69,10 @@ public class DB {
                     String command = rs.getString("command");
                     String value = rs.getString("value");
                     int delay = rs.getInt("delay");
-                    int type = rs.getInt("type_id");
+                    int typeId = rs.getInt("type_id");
                     
-                    action = new Action(name, command, value, delay, type);
+                    
+                    action = new Action(name, command, value, delay, typeId);
                     actions.add(action);
                     
                     //Display values
@@ -79,7 +81,8 @@ public class DB {
                     System.out.print(", command: " + command);
                     System.out.print(", value: " + value);
                     System.out.print(", delay: " + delay);
-                    System.out.print(", type: " + type);
+                    System.out.print(", typeId: " + typeId);
+                    
                     System.out.println(" ");
                     
                 }
@@ -88,8 +91,10 @@ public class DB {
       
         }catch(SQLException | ClassNotFoundException e){
             //TODO reasonable error handling
-            String m = DB.class.getName() + "\n" + e.getMessage();
-            LabDemLogger.LOGGER.log(Level.SEVERE, m);
+            e.printStackTrace();
+            //String m = DB.class.getName() + e.getMessage();
+            //LabDemLogger.LOGGER.log(Level.SEVERE, m);
+            LabDemLogger.LOGGER.log(Level.SEVERE, null, e);
             actions = null;
         }
         return actions;

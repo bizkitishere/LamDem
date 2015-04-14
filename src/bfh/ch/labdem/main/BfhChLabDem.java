@@ -15,38 +15,35 @@ import org.eclipse.paho.client.mqttv3.MqttException;
  */
 public class BfhChLabDem {
     
-    //broker information
-    private final static String PROTOCOL = "tcp";
-    //private final static String BROKER = "broker.mqttdashboard.com"; //public broker, for test purposes
-    private final static String BROKER = "147.87.117.73"; //LabDem broker
-    private final static String PORT = "1883";
-    private final static String TOPIC_MAIN = "LabDem";
-    private final static String TOPIC_APP = "/App";
-    private final static String WILL = "offline";
-    
     private static LabDemDaemon lbd;
-    
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         
-        //tries to load all data necessary for the performances
-        //if(LoadAllData() != null){
+        try {
+            //tries to load all data necessary for the performances
+            //if(LoadAllData() != null){
             //TODO send message to client that server could not load data from db
             //LabDemLogger.LOGGER.log(Level.SEVERE, "Could not load data from db");
-        //}
-              
-        lbd = new LabDemDaemon();
+            //}
+            
+            lbd = new LabDemDaemon();
+            lbd.run();
+            
+        } catch (MqttException ex) {
+            ex.printStackTrace();
+            LabDemLogger.LOGGER.log(Level.SEVERE, null, ex);
+        }
         
-        lbd.run();
+        
         
         //lbd.getActions(1, 1, 1, 1);
         
         //System.exit(0);
         
-        
+        /*
         try {
             System.out.println("Creating Subscriber");
             Subscriber s = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_APP, WILL, ClientType.Subscriber);
@@ -60,10 +57,10 @@ public class BfhChLabDem {
             System.out.println("Connecting to broker");
             p.connectToBroker();
             System.out.println("Publishing message");
-
             
-            //s.disconnectFromBroker();
-            //p.disconnectFromBroker();
+            
+            Publisher pHW = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_HW, WILL, ClientType.Publisher);
+            pHW.connectToBroker();
             
             
         } catch (MqttException ex) {
@@ -71,30 +68,32 @@ public class BfhChLabDem {
             String m = BfhChLabDem.class.getName() + "\nReason code: " + ex.getReasonCode() + " cause: " + ex.getMessage();
             LabDemLogger.LOGGER.log(Level.SEVERE, m);
         }
-        
+        */
         
     }
     
     public static void getActions(int performanceId, int regionId, int roleId, int enter){
         lbd.getActions(performanceId, regionId, roleId, enter);
+        
+        try {
+            lbd.executeActions();
+        } catch (MqttException ex) {
+            LabDemLogger.LOGGER.log(Level.SEVERE, null, ex);
+        }
     }
     
-    /**
-     * loads all the relevant data for performances from the database
-     * @return String containing error details or null
-     */
-    /*
-    public static String LoadAllData(){
-        
-        return DB.loadAllData();
-    }
-    */
     
     /**
      * enum containing the different client types
      */
     public enum ClientType{
-        Subscriber, Publisher
+        Subscriber,
+        Publisher
+    }
+    
+    public enum MQTTMessages{
+        Online,
+        Offline
     }
     
 }
