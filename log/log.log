@@ -144,3 +144,101 @@ INFO: Created successfully
 Apr 10, 2015 1:24:48 PM bfh.ch.labdem.helper.DB getActions
 SEVERE: bfh.ch.labdem.helper.DB
 Column 'type' not found.
+Apr 14, 2015 8:50:51 AM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 14, 2015 8:50:51 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler connectionLost
+SEVERE: bfh.ch.labdem.main.Subscriber
+MqttException
+Apr 14, 2015 9:01:51 AM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 14, 2015 9:01:51 AM bfh.ch.labdem.main.BfhChLabDem main
+SEVERE: bfh.ch.labdem.main.BfhChLabDem
+Persistence already in use
+Apr 14, 2015 9:01:55 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler connectionLost
+SEVERE: bfh.ch.labdem.main.Subscriber
+MqttException
+Apr 14, 2015 9:06:26 AM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 14, 2015 9:06:26 AM bfh.ch.labdem.main.BfhChLabDem main
+SEVERE: bfh.ch.labdem.main.BfhChLabDem
+ReasonCode: 32200
+Apr 14, 2015 9:06:31 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler connectionLost
+SEVERE: bfh.ch.labdem.main.Subscriber
+MqttException
+Apr 14, 2015 9:11:12 AM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 14, 2015 9:11:12 AM bfh.ch.labdem.main.BfhChLabDem main
+SEVERE: bfh.ch.labdem.main.BfhChLabDem
+ReasonCode: 32200
+Apr 14, 2015 9:27:17 AM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 14, 2015 9:27:17 AM bfh.ch.labdem.main.BfhChLabDem main
+SEVERE: bfh.ch.labdem.main.BfhChLabDem
+ReasonCode: 32200
+Apr 14, 2015 9:36:40 AM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 14, 2015 9:36:41 AM bfh.ch.labdem.main.BfhChLabDem main
+SEVERE: bfh.ch.labdem.main.BfhChLabDem
+ReasonCode: 32200
+Apr 14, 2015 9:36:48 AM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 14, 2015 9:36:48 AM bfh.ch.labdem.main.BfhChLabDem main
+SEVERE: bfh.ch.labdem.main.BfhChLabDem
+ReasonCode: 32200
+Apr 14, 2015 9:37:25 AM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 14, 2015 9:37:25 AM bfh.ch.labdem.main.BfhChLabDem main
+SEVERE: bfh.ch.labdem.main.BfhChLabDem
+ReasonCode: 32200
+Apr 14, 2015 9:41:36 AM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 14, 2015 9:41:36 AM bfh.ch.labdem.main.BfhChLabDem main
+SEVERE: bfh.ch.labdem.main.BfhChLabDem
+ReasonCode: 32200
+Apr 14, 2015 9:42:37 AM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 14, 2015 9:42:37 AM bfh.ch.labdem.main.BfhChLabDem main
+SEVERE: bfh.ch.labdem.main.BfhChLabDem
+ReasonCode: 32200
+Apr 14, 2015 9:44:19 AM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 14, 2015 9:44:19 AM bfh.ch.labdem.main.BfhChLabDem main
+SEVERE: bfh.ch.labdem.main.BfhChLabDem
+ReasonCode: 32200
+Apr 14, 2015 9:46:58 AM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 14, 2015 9:46:58 AM bfh.ch.labdem.main.BfhChLabDem main
+SEVERE: bfh.ch.labdem.main.BfhChLabDem
+ReasonCode: 32200 cause: null
+Apr 14, 2015 9:47:23 AM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 14, 2015 9:47:23 AM bfh.ch.labdem.main.BfhChLabDem main
+SEVERE: bfh.ch.labdem.main.BfhChLabDem
+ReasonCode: 32200 cause: Persistence already in use
+Apr 14, 2015 9:50:01 AM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 14, 2015 9:50:01 AM bfh.ch.labdem.main.BfhChLabDem main
+SEVERE: bfh.ch.labdem.main.BfhChLabDem
+Reason code: 32200 cause: Persistence already in use
+Apr 14, 2015 9:52:48 AM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 14, 2015 9:52:48 AM bfh.ch.labdem.main.BfhChLabDem main
+SEVERE: bfh.ch.labdem.main.BfhChLabDem
+Reason code: 32200 cause: Persistence already in use
+Apr 14, 2015 10:00:32 AM bfh.ch.labdem.helper.LabDemLogger <clinit>
+INFO: Created successfully
+Apr 14, 2015 10:00:32 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber
+For input string: "a"
+Apr 14, 2015 10:00:48 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber
+For input string: "a"
+Apr 14, 2015 10:00:48 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber
+For input string: "a"
+Apr 14, 2015 10:00:49 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber
+For input string: "a"
+Apr 14, 2015 10:00:49 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber
+For input string: "a"

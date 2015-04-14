@@ -24,6 +24,8 @@ public class BfhChLabDem {
     private final static String TOPIC_APP = "/App";
     private final static String WILL = "offline";
     
+    private static LabDemDaemon lbd;
+    
     
     /**
      * @param args the command line arguments
@@ -36,13 +38,13 @@ public class BfhChLabDem {
             //LabDemLogger.LOGGER.log(Level.SEVERE, "Could not load data from db");
         //}
               
-        LabDemDaemon lbd = new LabDemDaemon();
+        lbd = new LabDemDaemon();
         
         lbd.run();
         
-        lbd.getActions(1, 1, 1, 1);
+        //lbd.getActions(1, 1, 1, 1);
         
-        System.exit(0);
+        //System.exit(0);
         
         
         try {
@@ -65,11 +67,16 @@ public class BfhChLabDem {
             
             
         } catch (MqttException ex) {
-            String m = BfhChLabDem.class.getName() + "\n" + ex.getMessage();
+            ex.printStackTrace();
+            String m = BfhChLabDem.class.getName() + "\nReason code: " + ex.getReasonCode() + " cause: " + ex.getMessage();
             LabDemLogger.LOGGER.log(Level.SEVERE, m);
         }
         
         
+    }
+    
+    public static void getActions(int performanceId, int regionId, int roleId, int enter){
+        lbd.getActions(performanceId, regionId, roleId, enter);
     }
     
     /**
