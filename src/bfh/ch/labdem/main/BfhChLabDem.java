@@ -6,6 +6,7 @@
 package bfh.ch.labdem.main;
 
 import bfh.ch.labdem.helper.LabDemLogger;
+import static bfh.ch.labdem.helper.LabDemLogger.LOGGER;
 import java.util.logging.Level;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -21,6 +22,8 @@ public class BfhChLabDem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        LOGGER.info(MQTTMessages.Started.toString());
         
         try {
             //tries to load all data necessary for the performances
@@ -93,7 +96,8 @@ public class BfhChLabDem {
     
     public enum MQTTMessages{
         Online,
-        Offline
+        Offline,
+        Started
     }
     
 }
