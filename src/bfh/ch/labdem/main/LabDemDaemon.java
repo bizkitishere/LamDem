@@ -7,6 +7,8 @@ package bfh.ch.labdem.main;
 
 import bfh.ch.labdem.helper.DB;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Action;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -27,10 +29,7 @@ public class LabDemDaemon implements Runnable{
     private final String TOPIC_HW = "/HW";
     private final String WILL = BfhChLabDem.MQTTMessages.Offline.toString();
 
-    
-    
     private List<Action> actions = null;
-    
     
     private Subscriber sApp;
     private Publisher pApp, pHW;
@@ -70,7 +69,17 @@ public class LabDemDaemon implements Runnable{
         if(actions == null) return;
         
         for(Action a : actions){
-            String m = a.getTypeId() + ";" + a.getCommand() + ";" + a.getName() + ";" + a.getDelay();
+            
+            int delay = a.getDelay();
+            if(delay > 0){
+                try {
+                    Thread.sleep(delay);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                    Logger.getLogger(LabDemDaemon.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            String m = a.getTypeId() + ";" + a.getName() + ";" + a.getCommand() + ";" + a.getValue();
             pHW.Publish(m);
         }
         

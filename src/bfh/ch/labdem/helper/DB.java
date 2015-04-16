@@ -65,7 +65,7 @@ public class DB {
                 while(rs.next()){
                     //Retrieve by column name
                     
-                    String name = rs.getString("name");
+                    String name = rs.getString("hw_name");
                     String command = rs.getString("command");
                     String value = rs.getString("value");
                     int delay = rs.getInt("delay");
@@ -77,7 +77,7 @@ public class DB {
                     
                     //Display values
                     //TODO create return objects filled with data...
-                    System.out.print("name: " + name);
+                    System.out.print("hw name: " + name);
                     System.out.print(", command: " + command);
                     System.out.print(", value: " + value);
                     System.out.print(", delay: " + delay);
