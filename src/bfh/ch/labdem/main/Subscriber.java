@@ -52,44 +52,32 @@ public class Subscriber extends Client {
 
         @Override
         public void connectionLost(Throwable thrwbl) {
-            //TODO implement
-            System.out.println("Connection Lost...");
-            System.out.println(thrwbl.getCause());
-            System.out.println(thrwbl.getMessage());
-            String m = Subscriber.class.getName() + "\n" + thrwbl.getMessage();
+            //System.out.println("Connection Lost...");
+            //System.out.println(thrwbl.getCause());
+            //System.out.println(thrwbl.getMessage());
+            String m = Subscriber.class.getName() + "\nCause: " + thrwbl.getCause() + " Message: " + thrwbl.getMessage();
             LabDemLogger.LOGGER.log(Level.SEVERE, m);
         }
 
         @Override
         //messega that is called when a new mqtt message arrives
-        public void messageArrived(String string, MqttMessage mm) throws MqttException {
-            //TODO implement
-            
-            System.out.printf("Topic: (%s) Payload: (%s) Retained: (%b) \n", string, new String(mm.getPayload()), mm.isRetained());
-            
-                                                //performance, rolle, region, enter/exit
+        public void messageArrived(String string, MqttMessage mm) throws MqttException {            
+            //System.out.printf("Topic: (%s) Payload: (%s) Retained: (%b) \n", string, new String(mm.getPayload()), mm.isRetained());
+
             //messages need to be in the format: "[int], [int], [int], [int]"
-            
             int performanceId, regionId, roleId, enter;
-            
-            //ArrayList<Integer> ids = new ArrayList<>();
-            
+
             String message = new String(mm.getPayload());
             
+            //check if the received message is the online or offline status
             if(message.equals(BfhChLabDem.MQTTMessages.Online.toString()) 
             || message.equals(BfhChLabDem.MQTTMessages.Offline.toString())) return;
             
+            //split the message, using separator ";"
             String[] tokens = message.split(";", -1);
-            //int[] numbers = new int[tokens.length];
-            /*
-            for (String t : tokens) {
-                //ids[i] = Integer.parseInt(tokens[i]);
-                //System.out.println(t);
-                ids.add(Integer.parseInt(t));
-            }
-            */
-            
-            
+
+            //try to get 4 integers from the message that arrived,
+            //log input in wrong format
             try{
                 performanceId = Integer.parseInt(tokens[0]);
                 regionId = Integer.parseInt(tokens[1]);
@@ -97,17 +85,9 @@ public class Subscriber extends Client {
                 enter = Integer.parseInt(tokens[3]);
                 BfhChLabDem.getActions(performanceId, regionId, roleId, enter);
             }catch (NumberFormatException ex){
-                String m = Subscriber.class.getName() + " - " + ex.getMessage();
+                String m = Subscriber.class.getName() + " - " + ex.getMessage() + " -  Message: " + message;
                 LabDemLogger.LOGGER.log(Level.WARNING, m);
             }
-            
-            
-            
-            
-            //BfhChLabDem.getActions(ids.get(0), ids.get(1), ids.get(2), ids.get(3));
-            //BfhChLabDem.getActions(performanceId, regionId, roleId, enter);
-            
-            
         }
 
         @Override
