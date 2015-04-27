@@ -23,12 +23,6 @@ public class Publisher extends Client {
         super(protocol, broker, port, topic, will, type);
     }
     
-    @Override
-    public void connectToBroker() throws MqttException {
-        super.connectToBroker();
-        mqttClient.publish(TOPIC, BfhChLabDem.MQTTMessages.Online.toString().getBytes(), 1, true);
-    }
-    
     /**
      * sends a message to the broker for the publishers topic
      * @param m message to send
@@ -49,5 +43,7 @@ public class Publisher extends Client {
     public void Publish(String m, int qos, boolean retained) throws MqttException{
         mqttClient.publish(TOPIC, m.getBytes(), qos, retained);
     }
+    
+    //TODO add callback!!!
     
 }

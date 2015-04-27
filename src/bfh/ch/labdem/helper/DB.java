@@ -87,6 +87,7 @@ public class DB {
             //Register JDBC driver
             Class.forName(JDBC_DRIVER);
             
+            //query the db
             try (ResultSet rs = stmt.executeQuery(getActions)) {
                 
                 Action action;
@@ -103,17 +104,11 @@ public class DB {
                     //create a list of Action objects with the retrieved values
                     action = new Action(name, command, value, delay, typeId);
                     actions.add(action); 
-                    
-                    
-                    
-                    //System.out.println(action.toString());
                 }
             }
         }catch(SQLException | ClassNotFoundException e){
-            //TODO reasonable error handling
             //e.printStackTrace();
             String m = DB.class.getName() + "\nCause: " + e.getCause() + " -  Message: " + e.getMessage();
-            //LabDemLogger.LOGGER.log(Level.SEVERE, m);
             LabDemLogger.LOGGER.log(Level.WARNING, m);
             actions = null;
         }

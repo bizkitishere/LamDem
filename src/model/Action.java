@@ -62,4 +62,9 @@ public class Action {
         return typeId;
     }
     
+    @Override
+    public String toString(){
+        return "name: " + name + ", command: " + command + ", value: " + value + ", delay: " + delay + ", typeId: " + typeId;
+    }
+    
 }

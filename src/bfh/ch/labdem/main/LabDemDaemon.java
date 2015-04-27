@@ -8,9 +8,9 @@ package bfh.ch.labdem.main;
 import bfh.ch.labdem.helper.DB;
 import bfh.ch.labdem.helper.LabDemLogger;
 import bfh.ch.labdem.main.BfhChLabDem.ClientType;
+import bfh.ch.labdem.main.BfhChLabDem.MQTTMessages;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Action;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -35,22 +35,35 @@ public class LabDemDaemon implements Runnable{
     
     private Subscriber sApp;
     private Publisher pApp, pHW;
+    //private AsyncPublisher aPHW;
     
+    private final ActionExecuter ACTION_EXEC;
+    private Thread TAExe = null;
     
     public LabDemDaemon() throws MqttException{
         sApp = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_APP, WILL, BfhChLabDem.ClientType.Subscriber);
         pApp = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_APP, WILL, BfhChLabDem.ClientType.Publisher);
         pHW = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_HW, WILL, BfhChLabDem.ClientType.Publisher);
+        //aPHW = new AsyncPublisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_HW, WILL, BfhChLabDem.ClientType.Publisher);
         
         sApp.connectToBroker();
         sApp.subscribe();
         pApp.connectToBroker();
+        pApp.Publish(MQTTMessages.Online.toString(), 2, true);
         pHW.connectToBroker();
+        pHW.Publish(MQTTMessages.Online.toString(), 2, true);
+        
+        
+        //aPHW.connectToBroker();
+        
+        //prepare threads
+        //ACTION_EXEC = new ActionExecuter(aPHW);
+        ACTION_EXEC = new ActionExecuter(pHW, true);
     }
 
     @Override
     public void run() {
-        
+        //TODO remove...
         
         
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -64,8 +77,28 @@ public class LabDemDaemon implements Runnable{
     
     public void executeActions() throws MqttException{
         
+        //use base thread if it runs for the first time or if it finished its work
+        if(TAExe == null || TAExe.getState() == Thread.State.TERMINATED){
+            ACTION_EXEC.setActions(actions);
+            TAExe = new Thread(ACTION_EXEC);
+            TAExe.start();
+            
+        //base thread is busy, use a new thread to execute the actions
+        }else{
+            //need to create a new publisher for the new thread
+            Publisher pHW2 = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_HW, WILL, BfhChLabDem.ClientType.Publisher);
+            pHW2.connectToBroker();
+            
+            ActionExecuter tmpAExe = new ActionExecuter(pHW2, false);
+            //ActionExecuter tmpAExe = new ActionExecuter(aPHW);
+            tmpAExe.setActions(actions);
+            Thread tmpThread = new Thread(tmpAExe);
+            tmpThread.start();
+        }
+        
+        /*
         actions.stream().forEach((a) -> {
-            System.out.println("Executing action: " + a.toString());
+            System.out.println("Executing: " + a.toString());
         });
         
         if(actions == null) return;
@@ -86,6 +119,8 @@ public class LabDemDaemon implements Runnable{
         }
         
         actions = null;
+        
+        */
     }
     
     /**
