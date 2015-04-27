@@ -7,7 +7,6 @@ package bfh.ch.labdem.main;
 
 import bfh.ch.labdem.main.BfhChLabDem.ClientType;
 import java.net.URI;
-import java.util.Random;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
@@ -50,9 +49,7 @@ public abstract class Client {
         this.WILL = will;
         this.TYPE = type;
         this.BROKER_URI = URI.create(protocol + "://" + broker + ":" + port);
-        Random random = new Random();
-        this.CON_ID = broker + "." + topic + "." + "Server" + "." + TYPE.toString() + random.nextInt();
-        //System.out.println(CON_ID);
+        this.CON_ID = broker + "." + topic + "." + "Server" + "." + TYPE.toString();
         mqttClient = new MqttClient(BROKER_URI.toString(), CON_ID);
     }
     

@@ -21,12 +21,10 @@ public class ActionExecuter implements Runnable{
     private List<Action> actions = new ArrayList<>();
     //private AsyncPublisher publisher;
     private Publisher publisher;
+
     
-    private final boolean keepAlive;
-    
-    public ActionExecuter(Publisher p, boolean keepAlive){
+    public ActionExecuter(Publisher p){
         this.publisher = p;
-        this.keepAlive = keepAlive;
     }
     
     /*
@@ -41,7 +39,7 @@ public class ActionExecuter implements Runnable{
         while(actions != null){
             actions.stream().forEach((a) -> {
             //System.out.println("Executing: " + a.toString());
-        });
+        });}
         */
         
         if(actions == null) return;
@@ -66,15 +64,8 @@ public class ActionExecuter implements Runnable{
                 }
         }
         
-        //disconnect the temporary publisher
-        if(!keepAlive) try {
-            publisher.disconnectFromBroker();
-            } catch (MqttException ex) {
-                //not much to do here, broker is still connected, but will timeout some time
-            }
         //no more actions to execute, set the list to null
         actions = null;
-        //}
         
     }
     

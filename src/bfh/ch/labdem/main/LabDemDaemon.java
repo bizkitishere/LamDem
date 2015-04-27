@@ -58,7 +58,7 @@ public class LabDemDaemon implements Runnable{
         
         //prepare threads
         //ACTION_EXEC = new ActionExecuter(aPHW);
-        ACTION_EXEC = new ActionExecuter(pHW, true);
+        ACTION_EXEC = new ActionExecuter(pHW);
     }
 
     @Override
@@ -68,8 +68,6 @@ public class LabDemDaemon implements Runnable{
         
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
     
     public void getActions(int performanceId, int regionId, int roleId, int enter){
         actions = DB.getActions(performanceId, regionId, roleId, enter);
@@ -84,43 +82,13 @@ public class LabDemDaemon implements Runnable{
             TAExe.start();
             
         //base thread is busy, use a new thread to execute the actions
-        }else{
-            //need to create a new publisher for the new thread
-            Publisher pHW2 = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_HW, WILL, BfhChLabDem.ClientType.Publisher);
-            pHW2.connectToBroker();
-            
-            ActionExecuter tmpAExe = new ActionExecuter(pHW2, false);
+        }else{            
+            ActionExecuter tmpAExe = new ActionExecuter(pHW);
             //ActionExecuter tmpAExe = new ActionExecuter(aPHW);
             tmpAExe.setActions(actions);
             Thread tmpThread = new Thread(tmpAExe);
             tmpThread.start();
         }
-        
-        /*
-        actions.stream().forEach((a) -> {
-            System.out.println("Executing: " + a.toString());
-        });
-        
-        if(actions == null) return;
-        
-        for(Action a : actions){
-            
-            int delay = a.getDelay();
-            if(delay > 0){
-                try {
-                    Thread.sleep(delay);
-                } catch (InterruptedException ex) {
-                    ex.printStackTrace();
-                    Logger.getLogger(LabDemDaemon.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            String m = a.getTypeId() + ";" + a.getName() + ";" + a.getCommand() + ";" + a.getValue();
-            pHW.Publish(m);
-        }
-        
-        actions = null;
-        
-        */
     }
     
     /**

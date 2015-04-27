@@ -22,6 +22,9 @@ public class LabDemLogger {
     private final static String LOG_NAME = "log.log";
     public final static Logger LOGGER = Logger.getLogger("LabDem");
     
+    //logg messages
+    private final static String ERR_MSG_TEMPLATE = "%s  -  cause: %s  -  message: %s";
+    
     static{
         try {
 
