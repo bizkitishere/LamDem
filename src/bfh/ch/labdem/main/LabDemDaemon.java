@@ -6,6 +6,8 @@
 package bfh.ch.labdem.main;
 
 import bfh.ch.labdem.helper.DB;
+import bfh.ch.labdem.helper.LabDemLogger;
+import bfh.ch.labdem.main.BfhChLabDem.ClientType;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,7 +65,7 @@ public class LabDemDaemon implements Runnable{
     public void executeActions() throws MqttException{
         
         actions.stream().forEach((a) -> {
-            System.out.println(a.toString());
+            System.out.println("Executing action: " + a.toString());
         });
         
         if(actions == null) return;
@@ -84,7 +86,31 @@ public class LabDemDaemon implements Runnable{
         }
         
         actions = null;
+    }
+    
+    /**
+     * Tries to reconnect the MQTT client
+     * @param c client to reconnect
+     * The application will terminate if the reconnect is not possible
+     */
+    public void reconnect(Client c){
         
+        String m = "Attempting to reconnect " + c.getClass().getName();
+        LabDemLogger.LOGGER.info(m);
+        
+        try {
+            c.connectToBroker();
+            if(c.TYPE == ClientType.Subscriber){
+                Subscriber s = (Subscriber) c;
+                s.subscribe();
+            }
+            m = "Reconnected successfully";
+            LabDemLogger.LOGGER.info(m);
+        } catch (MqttException ex) {
+            m = "Could not reconnect \nTerminating";
+            LabDemLogger.LOGGER.log(Level.SEVERE, m);
+            System.exit(1);
+        }
     }
     
 }

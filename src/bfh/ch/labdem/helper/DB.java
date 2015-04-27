@@ -69,15 +69,15 @@ public class DB {
        //query to get all actions with the given parameters
        String getActions = String.format(
             "SELECT %s FROM %s"
-          + "WHERE %s = %d"
-          + "AND %s = %d"     
-          + "AND %s = %d"
-          + "AND %s = %d"
-          + "GROUP BY %s"
+          + " WHERE %s = %d"
+          + " AND %s = %d"     
+          + " AND %s = %d"
+          + " AND %s = %d"
+          + " GROUP BY %s"
           , ACTIONS_SELECT, DAEMONVIEW, PERFORMANCE_ID, performanceId, REGION_ID, regionId, ROLE_ID, roleId, ENTER, enter, HW_ID
        );
        
-       System.out.println(getActions);
+       //System.out.println(getActions);
        
        List<Action> actions = new ArrayList<>();
        
@@ -102,15 +102,19 @@ public class DB {
                     
                     //create a list of Action objects with the retrieved values
                     action = new Action(name, command, value, delay, typeId);
-                    actions.add(action);                    
+                    actions.add(action); 
+                    
+                    
+                    
+                    //System.out.println(action.toString());
                 }
             }
         }catch(SQLException | ClassNotFoundException e){
             //TODO reasonable error handling
             //e.printStackTrace();
-            //String m = DB.class.getName() + e.getMessage();
+            String m = DB.class.getName() + "\nCause: " + e.getCause() + " -  Message: " + e.getMessage();
             //LabDemLogger.LOGGER.log(Level.SEVERE, m);
-            LabDemLogger.LOGGER.log(Level.SEVERE, null, e);
+            LabDemLogger.LOGGER.log(Level.WARNING, m);
             actions = null;
         }
         return actions;

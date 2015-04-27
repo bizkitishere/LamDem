@@ -57,6 +57,9 @@ public class Subscriber extends Client {
             //System.out.println(thrwbl.getMessage());
             String m = Subscriber.class.getName() + "\nCause: " + thrwbl.getCause() + " Message: " + thrwbl.getMessage();
             LabDemLogger.LOGGER.log(Level.SEVERE, m);
+            
+            //tries to reconnect the subscriber to the broker
+            BfhChLabDem.reconnect(Subscriber.this);
         }
 
         @Override

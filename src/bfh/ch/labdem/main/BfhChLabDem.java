@@ -85,6 +85,15 @@ public class BfhChLabDem {
         }
     }
     
+    /**
+     * Tries to reconnect the MQTT client
+     * @param c client to reconnect
+     * The application will terminate if the reconnect is not possible
+     */
+    public static void reconnect(Client c){
+        lbd.reconnect(c);
+    }
+    
     
     /**
      * enum containing the different client types
