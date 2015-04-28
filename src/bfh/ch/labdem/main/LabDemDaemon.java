@@ -33,8 +33,8 @@ public class LabDemDaemon implements Runnable{
 
     private List<Action> actions = null;
     
-    private Subscriber sApp;
-    private Publisher pApp, pHW;
+    private final Subscriber sApp;
+    private final Publisher pApp, pHW;
     //private AsyncPublisher aPHW;
     
     private final ActionExecuter ACTION_EXEC;

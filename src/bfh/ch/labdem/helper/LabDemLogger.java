@@ -30,11 +30,22 @@ public class LabDemLogger {
 
             File f = new File(LOG_PATH);
             
+            //create folder if it does not exist
             if(!f.exists()){
                 f.mkdir();
             }
             
-            f = new File(LOG_NAME);
+            //list all files exept the log.log file
+            //f = new File(LOG_PATH);
+            File[] files = f.listFiles((file) -> !file.getName().equals(LOG_NAME));
+            
+            //delete all the files
+            for(File file : files){
+                file.delete();
+            }
+            
+            //create log.log file if it does not exist
+            f = new File(LOG_PATH + LOG_NAME);
             if(!f.exists()){
                 f.createNewFile();
             }
@@ -49,7 +60,7 @@ public class LabDemLogger {
         } catch (IOException | SecurityException ex) {
             //not much we can do here...
             ex.printStackTrace();
-            Logger.getLogger(LabDemLogger.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, null, ex);
         }
     }
     
