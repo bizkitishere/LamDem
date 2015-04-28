@@ -15,6 +15,8 @@ import java.util.logging.SimpleFormatter;
 /**
  *
  * @author Philippe Lüthi, Elia Kocher
+ * Class used to log into a single file, using a single logger
+ * Contains strings for log messages
  */
 public class LabDemLogger {
     
@@ -23,7 +25,12 @@ public class LabDemLogger {
     public final static Logger LOGGER = Logger.getLogger("LabDem");
     
     //logg messages
-    private final static String ERR_MSG_TEMPLATE = "%s  -  cause: %s  -  message: %s";
+    public final static String ERR_TEMPLATE = "%s  -  cause: %s  -  message: %s";
+    public final static String RECONNECT_ATTEMPT = "Attempting to reconnect: %s";
+    public final static String RECONNECT_FAILED = "Reconnection failed";
+    public final static String RECONNECT_SUCCESSFULL = "Reconnected successfully";
+    public final static String TERMINATED = "Terminated";
+    
     
     static{
         try {
@@ -59,8 +66,8 @@ public class LabDemLogger {
             
         } catch (IOException | SecurityException ex) {
             //not much we can do here...
-            ex.printStackTrace();
-            LOGGER.log(Level.SEVERE, null, ex);
+            //ex.printStackTrace();
+            //LOGGER.log(Level.SEVERE, null, ex);
         }
     }
     

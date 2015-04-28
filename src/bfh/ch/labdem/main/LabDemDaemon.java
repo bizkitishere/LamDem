@@ -27,8 +27,10 @@ public class LabDemDaemon implements Runnable{
     private final String BROKER = "localhost";
     private final String PORT = "1883";
     private final String TOPIC_MAIN = "LabDem";
-    private final String TOPIC_APP = "/App";
-    private final String TOPIC_HW = "/HW";
+    private final String TOPIC_APP2SERVER = "/App2Server";
+    private final String TOPIC_SERVER2APP = "/Server2App";
+    private final String TOPIC_SERVER2HW = "/Server2HW";
+    private final String TOPIC_HW2SERVER = "/HW2Server";
     private final String WILL = BfhChLabDem.MQTTMessages.Offline.toString();
 
     private List<Action> actions = null;
@@ -41,9 +43,9 @@ public class LabDemDaemon implements Runnable{
     private Thread TAExe = null;
     
     public LabDemDaemon() throws MqttException{
-        sApp = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_APP, WILL, BfhChLabDem.ClientType.Subscriber);
-        pApp = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_APP, WILL, BfhChLabDem.ClientType.Publisher);
-        pHW = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_HW, WILL, BfhChLabDem.ClientType.Publisher);
+        sApp = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_APP2SERVER, WILL, BfhChLabDem.ClientType.Subscriber);
+        pApp = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_SERVER2APP, WILL, BfhChLabDem.ClientType.Publisher);
+        pHW = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_SERVER2HW, WILL, BfhChLabDem.ClientType.Publisher);
         //aPHW = new AsyncPublisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_HW, WILL, BfhChLabDem.ClientType.Publisher);
         
         sApp.connectToBroker();
@@ -97,9 +99,7 @@ public class LabDemDaemon implements Runnable{
      * The application will terminate if the reconnect is not possible
      */
     public void reconnect(Client c){
-        
-        String m = "Attempting to reconnect " + c.getClass().getName();
-        LabDemLogger.LOGGER.info(m);
+        LabDemLogger.LOGGER.info(String.format(LabDemLogger.RECONNECT_ATTEMPT, c.getClass().getName()));
         
         try {
             c.connectToBroker();
@@ -107,11 +107,9 @@ public class LabDemDaemon implements Runnable{
                 Subscriber s = (Subscriber) c;
                 s.subscribe();
             }
-            m = "Reconnected successfully";
-            LabDemLogger.LOGGER.info(m);
+            LabDemLogger.LOGGER.info(LabDemLogger.RECONNECT_SUCCESSFULL);
         } catch (MqttException ex) {
-            m = "Could not reconnect \nTerminating";
-            LabDemLogger.LOGGER.log(Level.SEVERE, m);
+            LabDemLogger.LOGGER.log(Level.SEVERE, LabDemLogger.RECONNECT_FAILED);
             System.exit(1);
         }
     }
