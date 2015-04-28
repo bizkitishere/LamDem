@@ -33,7 +33,6 @@ public class BfhChLabDem {
             //}
             
             lbd = new LabDemDaemon();
-            lbd.run();
             
         } catch (MqttException ex) {
             ex.printStackTrace();

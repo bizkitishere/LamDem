@@ -18,7 +18,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
  *
  * @author Philippe Lüthi, Elia Kocher
  */
-public class LabDemDaemon implements Runnable{
+public class LabDemDaemon {
 
     //broker information
     private final String PROTOCOL = "tcp";
@@ -61,14 +61,6 @@ public class LabDemDaemon implements Runnable{
         //prepare threads
         //ACTION_EXEC = new ActionExecuter(aPHW);
         ACTION_EXEC = new ActionExecuter(pHW);
-    }
-
-    @Override
-    public void run() {
-        //TODO remove...
-        
-        
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     public void getActions(int performanceId, int regionId, int roleId, int enter){
