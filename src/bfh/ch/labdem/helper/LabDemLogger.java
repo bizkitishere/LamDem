@@ -24,6 +24,7 @@ public class LabDemLogger {
     public final static Logger LOGGER = Logger.getLogger("LabDem");
     
     //logg messages
+    public final static String STARTED = "Started";
     public final static String ERR_TEMPLATE = "%s  -  cause: %s  -  message: %s";
     public final static String RECONNECT_ATTEMPT = "Attempting to reconnect: %s";
     public final static String RECONNECT_FAILED = "Reconnection failed";

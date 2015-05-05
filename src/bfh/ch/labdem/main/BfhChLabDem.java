@@ -23,7 +23,7 @@ public class BfhChLabDem {
      */
     public static void main(String[] args) {
         
-        LOGGER.info(MQTTMessages.Started.toString());
+        LOGGER.info(LabDemLogger.STARTED);
         
         try {
             //tries to load all data necessary for the performances
@@ -93,6 +93,9 @@ public class BfhChLabDem {
         lbd.reconnect(c);
     }
     
+    public static void publishToApp(String m){
+        lbd.publishToApp(m);
+    }
     
     /**
      * enum containing the different client types
@@ -105,7 +108,8 @@ public class BfhChLabDem {
     public enum MQTTMessages{
         Online,
         Offline,
-        Started
+        OfflineAdHocHue,
+        LampServletOffline
     }
     
 }

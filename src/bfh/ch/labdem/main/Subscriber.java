@@ -7,6 +7,7 @@ package bfh.ch.labdem.main;
 
 import bfh.ch.labdem.helper.LabDemLogger;
 import bfh.ch.labdem.main.BfhChLabDem.ClientType;
+import bfh.ch.labdem.main.BfhChLabDem.MQTTMessages;
 import java.util.logging.Level;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -73,8 +74,19 @@ public class Subscriber extends Client {
             String message = new String(mm.getPayload());
             
             //check if the received message is the online or offline status
-            if(message.equals(BfhChLabDem.MQTTMessages.Online.toString()) 
-            || message.equals(BfhChLabDem.MQTTMessages.Offline.toString())) return;
+            if(message.equals(MQTTMessages.Online.toString())){
+                
+            }else if(message.equals(MQTTMessages.Offline.toString())){
+                
+            }else if(message.equals(MQTTMessages.LampServletOffline.toString())){
+                //send message to app
+                BfhChLabDem.publishToApp(MQTTMessages.LampServletOffline.toString());
+                return;
+            }else if(message.equals(BfhChLabDem.MQTTMessages.OfflineAdHocHue.toString())){
+                //send message to app
+                BfhChLabDem.publishToApp(MQTTMessages.OfflineAdHocHue.toString());
+                return;
+            }
             
             //split the message, using separator ";"
             String[] tokens = message.split(";", -1);

@@ -11,6 +11,7 @@ import bfh.ch.labdem.main.BfhChLabDem.ClientType;
 import bfh.ch.labdem.main.BfhChLabDem.MQTTMessages;
 import java.util.List;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Action;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -35,7 +36,7 @@ public class LabDemDaemon {
 
     private List<Action> actions = null;
     
-    private final Subscriber sApp;
+    private final Subscriber sApp, sHW;
     private final Publisher pApp, pHW;
     //private AsyncPublisher aPHW;
     
@@ -44,12 +45,15 @@ public class LabDemDaemon {
     
     public LabDemDaemon() throws MqttException{
         sApp = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_APP2SERVER, WILL, BfhChLabDem.ClientType.Subscriber);
+        sHW = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_HW2SERVER, WILL, BfhChLabDem.ClientType.Subscriber);
         pApp = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_SERVER2APP, WILL, BfhChLabDem.ClientType.Publisher);
         pHW = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_SERVER2HW, WILL, BfhChLabDem.ClientType.Publisher);
         //aPHW = new AsyncPublisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_HW, WILL, BfhChLabDem.ClientType.Publisher);
         
         sApp.connectToBroker();
         sApp.subscribe();
+        sHW.connectToBroker();
+        sHW.subscribe();
         pApp.connectToBroker();
         pApp.Publish(MQTTMessages.Online.toString(), 2, true);
         pHW.connectToBroker();
@@ -103,6 +107,16 @@ public class LabDemDaemon {
         } catch (MqttException ex) {
             LabDemLogger.LOGGER.log(Level.SEVERE, LabDemLogger.RECONNECT_FAILED);
             System.exit(1);
+        }
+    }
+    
+    public void publishToApp(String m){
+        try {
+            pApp.Publish(m, 2, true);
+        } catch (MqttException ex) {
+            //cannot notify app that another service is not running probably best to shut down
+            //System.exit(1);
+            Logger.getLogger(LabDemDaemon.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

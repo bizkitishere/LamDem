@@ -22,3 +22,40 @@ Mai 05, 2015 9:05:04 AM bfh.ch.labdem.main.BfhChLabDem main
 INFO: Started
 Mai 05, 2015 9:29:16 AM bfh.ch.labdem.main.BfhChLabDem main
 INFO: Started
+Mai 05, 2015 9:43:50 AM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 05, 2015 10:06:15 AM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 05, 2015 10:34:52 AM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 05, 2015 10:34:52 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Offline" -  Message: Offline
+Mai 05, 2015 10:34:52 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - For input string: "OfflineAdHocHue" -  Message: OfflineAdHocHue
+Mai 05, 2015 10:34:55 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Online" -  Message: Online
+Mai 05, 2015 10:35:05 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - For input string: "LampServletOffline" -  Message: LampServletOffline
+Mai 05, 2015 10:36:35 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - For input string: "OfflineAdHocHue" -  Message: OfflineAdHocHue
+Mai 05, 2015 10:37:29 AM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 05, 2015 10:37:30 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Offline" -  Message: Offline
+Mai 05, 2015 10:37:30 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler connectionLost
+SEVERE: bfh.ch.labdem.main.Subscriber
+Cause: java.lang.NullPointerException Message: MqttException
+Mai 05, 2015 10:38:56 AM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 05, 2015 10:38:56 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Offline" -  Message: Offline
+Mai 05, 2015 10:38:56 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Online" -  Message: Online
+Mai 05, 2015 10:39:47 AM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 05, 2015 10:39:47 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Offline" -  Message: Offline
+Mai 05, 2015 10:39:47 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Online" -  Message: Online
+Mai 05, 2015 10:39:56 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Online" -  Message: Online
