@@ -75,9 +75,11 @@ public class Subscriber extends Client {
             
             //check if the received message is the online or offline status
             if(message.equals(MQTTMessages.Online.toString())){
-                
+                //TODO implement
+                return;
             }else if(message.equals(MQTTMessages.Offline.toString())){
-                
+                //TODO implement
+                return;
             }else if(message.equals(MQTTMessages.LampServletOffline.toString())){
                 //send message to app
                 BfhChLabDem.publishToApp(MQTTMessages.LampServletOffline.toString());
