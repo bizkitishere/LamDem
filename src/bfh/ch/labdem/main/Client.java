@@ -18,7 +18,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 public abstract class Client {
     
     //parameters to connect to broker
-    final BfhChLabDem.ClientType TYPE;
+    final ClientType TYPE;
     final String PROTOCOL;
     final String BROKER;
     final String PORT;
@@ -50,6 +50,7 @@ public abstract class Client {
         this.TYPE = type;
         this.BROKER_URI = URI.create(protocol + "://" + broker + ":" + port);
         this.CON_ID = broker + "." + topic + "." + "Server" + "." + TYPE.toString();
+        
         mqttClient = new MqttClient(BROKER_URI.toString(), CON_ID);
     }
     
