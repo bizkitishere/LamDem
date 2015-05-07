@@ -8,6 +8,7 @@ package bfh.ch.labdem.main;
 import bfh.ch.labdem.helper.LabDemLogger;
 import bfh.ch.labdem.main.BfhChLabDem.ClientType;
 import bfh.ch.labdem.main.BfhChLabDem.MQTTMessages;
+import bfh.ch.labdem.main.BfhChLabDem.Services;
 import java.util.logging.Level;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -68,9 +69,6 @@ public class Subscriber extends Client {
         public void messageArrived(String string, MqttMessage mm) throws MqttException {            
             //System.out.printf("Topic: (%s) Payload: (%s) Retained: (%b) \n", string, new String(mm.getPayload()), mm.isRetained());
 
-            //messages need to be in the format: "[int], [int], [int], [int]"
-            int performanceId, regionId, roleId, enter;
-
             String message = new String(mm.getPayload());
             
             //check if the received message is the online or offline status
@@ -80,19 +78,25 @@ public class Subscriber extends Client {
             }else if(message.equals(MQTTMessages.Offline.toString())){
                 //TODO implement
                 return;
+                //lamp service is offline, can not turn lamps on or off anymore
             }else if(message.equals(MQTTMessages.LampServletOffline.toString())){
                 //send message to app
-                BfhChLabDem.publishToApp(MQTTMessages.LampServletOffline.toString());
+                BfhChLabDem.publishToApp(MQTTMessages.Error + ";" + MQTTMessages.LampServletOffline.toString() + ";");
+                LabDemLogger.LOGGER.log(Level.SEVERE, String.format(LabDemLogger.ERR_OFFLINE_TEMPLATE, Services.LampService));
                 return;
             }else if(message.equals(BfhChLabDem.MQTTMessages.OfflineAdHocHue.toString())){
                 //send message to app
-                BfhChLabDem.publishToApp(MQTTMessages.OfflineAdHocHue.toString());
+                BfhChLabDem.publishToApp(MQTTMessages.Error + ";" + MQTTMessages.OfflineAdHocHue.toString() + ";");
+                LabDemLogger.LOGGER.log(Level.SEVERE, String.format(LabDemLogger.ERR_OFFLINE_TEMPLATE, Services.AdHocHUE));
                 return;
             }
             
             //split the message, using separator ";"
             String[] tokens = message.split(";", -1);
 
+            //messages need to be in the format: "[int], [int], [int], [int]"
+            int performanceId, regionId, roleId, enter;
+            
             //try to get 4 integers from the message that arrived,
             //log input in wrong format
             try{

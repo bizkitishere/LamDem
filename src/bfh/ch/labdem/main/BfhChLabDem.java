@@ -26,52 +26,15 @@ public class BfhChLabDem {
         LOGGER.info(LabDemLogger.STARTED);
         
         try {
-            //tries to load all data necessary for the performances
-            //if(LoadAllData() != null){
-            //TODO send message to client that server could not load data from db
-            //LabDemLogger.LOGGER.log(Level.SEVERE, "Could not load data from db");
-            //}
-            
             lbd = new LabDemDaemon();
-            
         } catch (MqttException ex) {
             ex.printStackTrace();
-            LabDemLogger.LOGGER.log(Level.SEVERE, null, ex);
+            
+            LabDemLogger.LOGGER.log(Level.SEVERE, String.format(LabDemLogger.ERR_TEMPLATE, LabDemDaemon.class.getName(), ex.getCause(), ex.getMessage()));
+            //could not create the Daemon, application will shut down
+            LabDemLogger.LOGGER.log(Level.SEVERE, "Could not create the daemon... " + LabDemLogger.TERMINATED);
+            System.exit(1);
         }
-        
-        
-        
-        //lbd.getActions(1, 1, 1, 1);
-        
-        //System.exit(0);
-        
-        /*
-        try {
-            System.out.println("Creating Subscriber");
-            Subscriber s = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_APP, WILL, ClientType.Subscriber);
-            System.out.println("Connecting to broker");
-            s.connectToBroker();
-            System.out.println("Subscribing to topic");
-            s.subscribe();
-            
-            System.out.println("Creating Publisher");
-            Publisher p = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_APP, WILL, ClientType.Publisher);
-            System.out.println("Connecting to broker");
-            p.connectToBroker();
-            System.out.println("Publishing message");
-            
-            
-            Publisher pHW = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_HW, WILL, ClientType.Publisher);
-            pHW.connectToBroker();
-            
-            
-        } catch (MqttException ex) {
-            ex.printStackTrace();
-            String m = BfhChLabDem.class.getName() + "\nReason code: " + ex.getReasonCode() + " cause: " + ex.getMessage();
-            LabDemLogger.LOGGER.log(Level.SEVERE, m);
-        }
-        */
-        
     }
     
     public static void getActions(int performanceId, int regionId, int roleId, int enter){
@@ -80,7 +43,7 @@ public class BfhChLabDem {
         try {
             lbd.executeActions();
         } catch (MqttException ex) {
-            LabDemLogger.LOGGER.log(Level.SEVERE, null, ex);
+            LabDemLogger.LOGGER.log(Level.SEVERE, String.format(LabDemLogger.ERR_TEMPLATE, LabDemDaemon.class.getName(), ex.getCause(), ex.getMessage()));
         }
     }
     
@@ -105,11 +68,24 @@ public class BfhChLabDem {
         Publisher
     }
     
+    /**
+     * enum containing different messages that will be sent using MQTT
+     */
     public enum MQTTMessages{
         Online,
         Offline,
         OfflineAdHocHue,
-        LampServletOffline
+        LampServletOffline,
+        Error
+    }
+    
+    /**
+     * enum containing all the services
+     */
+    public enum Services{
+        Daemon,
+        LampService,
+        AdHocHUE
     }
     
 }

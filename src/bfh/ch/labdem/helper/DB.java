@@ -51,21 +51,7 @@ public class DB {
      * @return List<Action> containing a list of actions or null
      */
     public static List<Action> getActions(int performanceId, int regionId, int roleId, int enter){
-       
-       //use a new Stringbuilder that will be empty
-       //sb = new StringBuilder();
-       //db query
-        /*
-       sb.append("SELECT ").append(ACTIONS_SELECT).append(" FROM ").append(DAEMONVIEW);
-       sb.append(" WHERE ").append(PERFORMANCE_ID).append(" = ").append(performanceId);
-       sb.append(" AND ").append(REGION_ID).append(" =").append(regionId);
-       sb.append(" AND ").append(ROLE_ID).append(" =").append(roleId);
-       sb.append(" AND ").append(ENTER).append(" = ").append(enter);
-       sb.append(" GROUP BY ").append(HW_ID);
-       */
-       
-       //System.out.println(sb.toString());
-       
+
        //query to get all actions with the given parameters
        String getActions = String.format(
             "SELECT %s FROM %s"
@@ -76,9 +62,7 @@ public class DB {
           + " GROUP BY %s"
           , ACTIONS_SELECT, DAEMONVIEW, PERFORMANCE_ID, performanceId, REGION_ID, regionId, ROLE_ID, roleId, ENTER, enter, HW_ID
        );
-       
-       //System.out.println(getActions);
-       
+
        List<Action> actions = new ArrayList<>();
        
         //open connection and statement in try as resources -> will be closed automatically 
@@ -107,9 +91,7 @@ public class DB {
                 }
             }
         }catch(SQLException | ClassNotFoundException e){
-            //e.printStackTrace();
-            String m = DB.class.getName() + "\nCause: " + e.getCause() + " -  Message: " + e.getMessage();
-            LabDemLogger.LOGGER.log(Level.WARNING, m);
+            LabDemLogger.LOGGER.log(Level.SEVERE, String.format(LabDemLogger.ERR_TEMPLATE, DB.class.getName(), e.getCause(), e.getMessage()));
             actions = null;
         }
         return actions;

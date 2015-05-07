@@ -25,13 +25,17 @@ public class LabDemLogger {
     
     //logg messages
     public final static String STARTED = "Started";
+    //add class name, cause and message in String.format()
     public final static String ERR_TEMPLATE = "%s  -  cause: %s  -  message: %s";
+    public final static String ERR_OFFLINE_TEMPLATE = "The following Service if offline: %s";
     public final static String RECONNECT_ATTEMPT = "Attempting to reconnect: %s";
     public final static String RECONNECT_FAILED = "Reconnection failed";
     public final static String RECONNECT_SUCCESSFULL = "Reconnected successfully";
     public final static String TERMINATED = "Terminated";
     
     
+    //initialises the logger
+    //sets the log path and deletes everything but the log file
     static{
         try {
 
@@ -43,7 +47,6 @@ public class LabDemLogger {
             }
             
             //list all files exept the log.log file
-            //f = new File(LOG_PATH);
             File[] files = f.listFiles((file) -> !file.getName().equals(LOG_NAME));
             
             //delete all the files

@@ -13,34 +13,26 @@ import model.Action;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 /**
- *
- * @author Snisä
+ * Class used to send all actions using MQTT.
+ * Every action in the list of actions will be published to a MQTT
+ * broker using the publisher given in the constructor
+ * @author Philippe Lüthi, Elia Kocher
  */
 public class ActionExecuter implements Runnable{
 
     private List<Action> actions = new ArrayList<>();
-    //private AsyncPublisher publisher;
     private Publisher publisher;
 
-    
+    /**
+     * constructs a new Action Executer
+     * @param p publisher used to send the messages
+     */
     public ActionExecuter(Publisher p){
         this.publisher = p;
     }
-    
-    /*
-    public ActionExecuter(AsyncPublisher p){
-        this.publisher = p;
-    }
-    */
-    
+
     @Override
     public void run() {
-        /*
-        while(actions != null){
-            actions.stream().forEach((a) -> {
-            //System.out.println("Executing: " + a.toString());
-        });}
-        */
         
         if(actions == null) return;
         
@@ -60,26 +52,28 @@ public class ActionExecuter implements Runnable{
                     publisher.Publish(m);
                 } catch (MqttException ex) {
                     //TODO something
-                    Logger.getLogger(ActionExecuter.class.getName()).log(Level.SEVERE, null, ex);
+                    //Logger.getLogger(ActionExecuter.class.getName()).log(Level.SEVERE, null, ex);
                 }
         }
         
         //no more actions to execute, set the list to null
         actions = null;
-        
     }
     
+    /**
+     * Set the list of actions that should be published to the MQTT broker
+     * @param a list of actions
+     */
     public void setActions(List<Action> a){
         this.actions = a;
     }
     
+    /**
+     * Set the publisher used to publish to the MQTT broker
+     * @param p MQTT publisher
+     */
     public void setPublisher(Publisher p){
         this.publisher = p;
     }
-    
-    /*
-    public void setPublisher(AsyncPublisher p){
-        this.publisher = p;
-    }
-    */
+
 }
