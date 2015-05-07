@@ -69,8 +69,8 @@ public class LabDemLogger {
             
         } catch (IOException | SecurityException ex) {
             //not much we can do here...
-            //ex.printStackTrace();
-            //LOGGER.log(Level.SEVERE, null, ex);
+            //shut down
+            System.exit(-1);
         }
     }
     
