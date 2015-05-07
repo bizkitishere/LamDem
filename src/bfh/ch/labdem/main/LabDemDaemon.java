@@ -30,7 +30,7 @@ public class LabDemDaemon {
     private final String TOPIC_SERVER2APP = "/Server2App";
     private final String TOPIC_SERVER2HW = "/Server2HW";
     private final String TOPIC_HW2SERVER = "/HW2Server";
-    private final String WILL = BfhChLabDem.MQTTMessages.Offline.toString();
+    private final String WILL = "Error;" + MQTTMessages.OfflineDaemon + ";" + "Daemon is offline and needs to be restarted";
 
     private List<Action> actions = null;
     
@@ -103,7 +103,7 @@ public class LabDemDaemon {
     
     public void publishToApp(String m){
         try {
-            pApp.Publish(m, 2, true);
+            pApp.Publish(m, 1, true);
         } catch (MqttException ex) {
             //cannot notify app that another service is not running probably best to shut down
             //System.exit(1);

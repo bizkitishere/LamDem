@@ -74,6 +74,7 @@ public class BfhChLabDem {
     public enum MQTTMessages{
         Online,
         Offline,
+        OfflineDaemon,
         OfflineAdHocHue,
         LampServletOffline,
         Error
