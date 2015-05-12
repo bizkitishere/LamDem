@@ -86,7 +86,7 @@ public class Subscriber extends Client {
                 return;
             }else if(message.equals(BfhChLabDem.MQTTMessages.OfflineAdHocHue.toString())){
                 //send message to app
-                BfhChLabDem.publishToApp(MQTTMessages.Error + ";" + MQTTMessages.OfflineAdHocHue.toString() + ";");
+                BfhChLabDem.publishToApp(MQTTMessages.Error + ";" + MQTTMessages.OfflineAdHocHue.toString() + ";" + "It needs to be restarted");
                 LabDemLogger.LOGGER.log(Level.SEVERE, String.format(LabDemLogger.ERR_OFFLINE_TEMPLATE, Services.AdHocHUE));
                 return;
             }

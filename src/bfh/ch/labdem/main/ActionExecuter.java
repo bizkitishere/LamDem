@@ -7,6 +7,7 @@ package bfh.ch.labdem.main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import model.Action;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -18,6 +19,9 @@ import org.eclipse.paho.client.mqttv3.MqttException;
  */
 public class ActionExecuter implements Runnable{
 
+    private final static Random RAND = new Random();
+    
+    //list conraining the actions to send
     private List<Action> actions = new ArrayList<>();
     private Publisher publisher;
 
@@ -34,6 +38,9 @@ public class ActionExecuter implements Runnable{
         
         if(actions == null) return;
         
+        //get a random int to "group" actions that belong together
+        int messageId = RAND.nextInt();
+        
         for(Action a : actions){
                 try {
                     int delay = a.getDelay();
@@ -45,7 +52,7 @@ public class ActionExecuter implements Runnable{
                             //nothing to do here
                         }
                     }
-                    String m = a.getTypeId() + ";" + a.getName() + ";" + a.getCommand() + ";" + a.getValue();
+                    String m = a.getTypeId() + ";" + a.getName() + ";" + a.getCommand() + ";" + a.getValue() + ";" + messageId;
                     publisher.Publish(m);
                 } catch (MqttException ex) {
                     //TODO something
