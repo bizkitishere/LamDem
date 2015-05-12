@@ -106,7 +106,7 @@ public class Subscriber extends Client {
                 enter = Integer.parseInt(tokens[3]);
                 BfhChLabDem.getActions(performanceId, regionId, roleId, enter);
             }catch (NumberFormatException ex){
-                String m = Subscriber.class.getName() + " - " + ex.getMessage() + " -  Message: " + message;
+                String m = Subscriber.class.getName() + " - Topic: " + TOPIC + " - " + ex.getMessage() + " -  Message: " + message;
                 LabDemLogger.LOGGER.log(Level.WARNING, m);
             }
         }

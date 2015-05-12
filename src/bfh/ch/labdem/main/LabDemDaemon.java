@@ -30,37 +30,47 @@ public class LabDemDaemon {
     private final String TOPIC_SERVER2APP = "/Server2App";
     private final String TOPIC_SERVER2HW = "/Server2HW";
     private final String TOPIC_HW2SERVER = "/HW2Server";
-    private final String WILL = "Error;" + MQTTMessages.OfflineDaemon + ";" + "Daemon is offline and needs to be restarted";
+    private final String WILL = MQTTMessages.Offline.toString();
+    private final String WILL_SERVER2APP = "Error;" + MQTTMessages.OfflineDaemon + ";" + "Daemon is offline and needs to be restarted";
+    
 
     private List<Action> actions = null;
     
+    //MQTT publisher and subscriber
     private final Subscriber sApp, sHW;
     private final Publisher pApp, pHW;
     
+    //threads
     private final ActionExecuter ACTION_EXEC;
     private Thread TAExe = null;
     
+    //db connection
+    private final DB db;
+    
     public LabDemDaemon() throws MqttException{
-        sApp = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_APP2SERVER, WILL, BfhChLabDem.ClientType.Subscriber);
-        sHW = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_HW2SERVER, WILL, BfhChLabDem.ClientType.Subscriber);
-        pApp = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_SERVER2APP, WILL, BfhChLabDem.ClientType.Publisher);
-        pHW = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_SERVER2HW, WILL, BfhChLabDem.ClientType.Publisher);
+        //setup DB
+        db = new DB();
         
-        sApp.connectToBroker();
-        sApp.subscribe();
-        sHW.connectToBroker();
-        sHW.subscribe();
+        //setup MQTT
+        pApp = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_SERVER2APP, WILL_SERVER2APP, BfhChLabDem.ClientType.Publisher);
         pApp.connectToBroker();
         pApp.Publish(MQTTMessages.Online.toString(), 1, true);
+        sApp = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_APP2SERVER, WILL_SERVER2APP, BfhChLabDem.ClientType.Subscriber);
+        sApp.connectToBroker();
+        sApp.subscribe();
+        pHW = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_SERVER2HW, WILL, BfhChLabDem.ClientType.Publisher);
         pHW.connectToBroker();
         pHW.Publish(MQTTMessages.Online.toString(), 1, true);
+        sHW = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_HW2SERVER, WILL, BfhChLabDem.ClientType.Subscriber);
+        sHW.connectToBroker();
+        sHW.subscribe();
         
         //prepare threads
         ACTION_EXEC = new ActionExecuter(pHW);
     }
     
     public void getActions(int performanceId, int regionId, int roleId, int enter){
-        actions = DB.getActions(performanceId, regionId, roleId, enter);
+        actions = db.getActions(performanceId, regionId, roleId, enter);
     }
     
     public void executeActions() throws MqttException{
@@ -105,7 +115,7 @@ public class LabDemDaemon {
         try {
             pApp.Publish(m, 1, true);
         } catch (MqttException ex) {
-            //cannot notify app that another service is not running probably best to shut down
+            //cannot notify app that another service is not running, shutting down
             //System.exit(1);
             Logger.getLogger(LabDemDaemon.class.getName()).log(Level.SEVERE, null, ex);
         }

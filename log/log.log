@@ -1,61 +1,92 @@
-Apr 28, 2015 9:09:51 AM bfh.ch.labdem.main.BfhChLabDem main
+Mai 12, 2015 9:52:57 AM bfh.ch.labdem.main.BfhChLabDem main
 INFO: Started
-Apr 28, 2015 9:28:35 AM bfh.ch.labdem.main.BfhChLabDem main
+Mai 12, 2015 9:53:00 AM bfh.ch.labdem.helper.DB terminate
+SEVERE: Could not connect to Database
+Terminated
+
+Mai 12, 2015 9:54:00 AM bfh.ch.labdem.main.BfhChLabDem main
 INFO: Started
-Apr 28, 2015 9:31:00 AM bfh.ch.labdem.main.BfhChLabDem main
+Mai 12, 2015 9:54:02 AM bfh.ch.labdem.helper.DB logAndTerminate
+SEVERE: Could not connect to Database
+Terminated
+
+Mai 12, 2015 9:55:54 AM bfh.ch.labdem.main.BfhChLabDem main
 INFO: Started
-Apr 28, 2015 9:40:08 AM bfh.ch.labdem.main.BfhChLabDem main
-INFO: Started
-Apr 28, 2015 10:37:53 AM bfh.ch.labdem.main.BfhChLabDem main
-INFO: Started
-Mai 05, 2015 8:38:52 AM bfh.ch.labdem.main.BfhChLabDem main
-INFO: Started
-Mai 05, 2015 8:39:09 AM bfh.ch.labdem.main.BfhChLabDem main
-INFO: Started
-Mai 05, 2015 8:53:51 AM bfh.ch.labdem.main.BfhChLabDem main
-INFO: Started
-Mai 05, 2015 8:56:46 AM bfh.ch.labdem.main.BfhChLabDem main
-INFO: Started
-Mai 05, 2015 8:57:09 AM bfh.ch.labdem.main.BfhChLabDem main
-INFO: Started
-Mai 05, 2015 9:05:04 AM bfh.ch.labdem.main.BfhChLabDem main
-INFO: Started
-Mai 05, 2015 9:29:16 AM bfh.ch.labdem.main.BfhChLabDem main
-INFO: Started
-Mai 05, 2015 9:43:50 AM bfh.ch.labdem.main.BfhChLabDem main
-INFO: Started
-Mai 05, 2015 10:06:15 AM bfh.ch.labdem.main.BfhChLabDem main
-INFO: Started
-Mai 05, 2015 10:34:52 AM bfh.ch.labdem.main.BfhChLabDem main
-INFO: Started
-Mai 05, 2015 10:34:52 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
-WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Offline" -  Message: Offline
-Mai 05, 2015 10:34:52 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
-WARNING: bfh.ch.labdem.main.Subscriber - For input string: "OfflineAdHocHue" -  Message: OfflineAdHocHue
-Mai 05, 2015 10:34:55 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
-WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Online" -  Message: Online
-Mai 05, 2015 10:35:05 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
-WARNING: bfh.ch.labdem.main.Subscriber - For input string: "LampServletOffline" -  Message: LampServletOffline
-Mai 05, 2015 10:36:35 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
-WARNING: bfh.ch.labdem.main.Subscriber - For input string: "OfflineAdHocHue" -  Message: OfflineAdHocHue
-Mai 05, 2015 10:37:29 AM bfh.ch.labdem.main.BfhChLabDem main
-INFO: Started
-Mai 05, 2015 10:37:30 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
-WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Offline" -  Message: Offline
-Mai 05, 2015 10:37:30 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler connectionLost
+Mai 12, 2015 9:55:54 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 12, 2015 9:55:54 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler connectionLost
 SEVERE: bfh.ch.labdem.main.Subscriber
 Cause: java.lang.NullPointerException Message: MqttException
-Mai 05, 2015 10:38:56 AM bfh.ch.labdem.main.BfhChLabDem main
+Mai 12, 2015 9:57:29 AM bfh.ch.labdem.main.BfhChLabDem main
 INFO: Started
-Mai 05, 2015 10:38:56 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
-WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Offline" -  Message: Offline
-Mai 05, 2015 10:38:56 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
-WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Online" -  Message: Online
-Mai 05, 2015 10:39:47 AM bfh.ch.labdem.main.BfhChLabDem main
+Mai 12, 2015 9:57:30 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 12, 2015 9:58:10 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler connectionLost
+SEVERE: bfh.ch.labdem.main.Subscriber
+Cause: java.lang.NullPointerException Message: MqttException
+Mai 12, 2015 9:58:21 AM bfh.ch.labdem.main.LabDemDaemon reconnect
+INFO: Attempting to reconnect: bfh.ch.labdem.main.Subscriber
+Mai 12, 2015 9:58:55 AM bfh.ch.labdem.main.LabDemDaemon reconnect
+INFO: Reconnected successfully
+Mai 12, 2015 10:00:00 AM bfh.ch.labdem.main.BfhChLabDem main
 INFO: Started
-Mai 05, 2015 10:39:47 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
-WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Offline" -  Message: Offline
-Mai 05, 2015 10:39:47 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
-WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Online" -  Message: Online
-Mai 05, 2015 10:39:56 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
-WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Online" -  Message: Online
+Mai 12, 2015 10:00:01 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 12, 2015 10:01:26 AM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 12, 2015 10:02:03 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 12, 2015 10:02:19 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 12, 2015 10:03:12 AM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 12, 2015 10:03:12 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 12, 2015 10:05:52 AM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 12, 2015 10:08:45 AM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 12, 2015 10:08:45 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 12, 2015 10:09:38 AM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 12, 2015 10:09:38 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 12, 2015 10:12:07 AM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 12, 2015 10:12:08 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 12, 2015 10:14:41 AM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 12, 2015 10:14:42 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: bfh.ch.labdem.main.Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 12, 2015 10:18:18 AM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 12, 2015 10:18:33 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+SEVERE: The following Service is offline: LampService
+Mai 12, 2015 10:18:33 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+SEVERE: The following Service is offline: LampService
+Mai 12, 2015 10:18:46 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+SEVERE: The following Service is offline: LampService
+Mai 12, 2015 10:18:46 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+SEVERE: The following Service is offline: LampService
+Mai 12, 2015 10:22:27 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+SEVERE: The following Service is offline: LampService
+Mai 12, 2015 10:22:49 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+SEVERE: The following Service is offline: LampService
+Mai 12, 2015 10:22:56 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+SEVERE: The following Service is offline: LampService
+Mai 12, 2015 10:22:56 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+SEVERE: The following Service is offline: LampService
+Mai 12, 2015 10:24:12 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+SEVERE: The following Service is offline: LampService
+Mai 12, 2015 10:24:33 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+SEVERE: The following Service is offline: LampService
+Mai 12, 2015 10:25:23 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+SEVERE: The following Service is offline: LampService
+Mai 12, 2015 10:27:52 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+SEVERE: The following Service is offline: AdHocHUE
+Mai 12, 2015 10:29:28 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+SEVERE: The following Service is offline: LampService
+Mai 12, 2015 10:33:57 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+SEVERE: The following Service is offline: AdHocHUE

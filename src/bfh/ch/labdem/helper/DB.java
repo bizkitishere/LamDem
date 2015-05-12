@@ -17,30 +17,40 @@ import model.Action;
 public class DB {
     
    //JDBC driver name and database URL
-   private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-   private static final String DB_URL = "jdbc:mysql://localhost/apodeixis_db";
+   private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
+   private final String DB_URL = "jdbc:mysql://localhost/apodeixis_db";
 
    //Database credentials
-   private static final String USER = "apodeixisUser";
-   private static final String PASS = "userPassApo15";   
+   private final String USER = "apodeixisUser";
+   private final String PASS = "userPassApo15";   
    
    //db views
-   private static final String DAEMONVIEW = "daemonview";
+   private final String DAEMONVIEW = "daemonview";
    
    //db column names
-   private static final String PERFORMANCE_ID = "performance_id";
-   private static final String REGION_ID = "region_id";
-   private static final String ROLE_ID = "role_id";
-   private static final String ENTER = "enter";
-   private static final String HW_ID = "hw_id";
-   private static final String HW_NAME = "hw_name";
-   private static final String COMMAND = "command";
-   private static final String VALUE = "value";
-   private static final String DELAY = "delay";
-   private static final String TYPE_ID = "type_id";
-   private static final String ACTIONS_SELECT = HW_NAME + "," + COMMAND + "," + VALUE + "," + DELAY + "," + TYPE_ID;
+   private final String PERFORMANCE_ID = "performance_id";
+   private final String REGION_ID = "region_id";
+   private final String ROLE_ID = "role_id";
+   private final String ENTER = "enter";
+   private final String HW_ID = "hw_id";
+   private final String HW_NAME = "hw_name";
+   private final String COMMAND = "command";
+   private final String VALUE = "value";
+   private final String DELAY = "delay";
+   private final String TYPE_ID = "type_id";
+   private final String ACTIONS_SELECT = HW_NAME + "," + COMMAND + "," + VALUE + "," + DELAY + "," + TYPE_ID;
    
-   //private static StringBuilder sb;
+   public DB(){
+       //try to connect to db
+       try (Connection conn = DriverManager.getConnection(DB_URL,USER,PASS)){
+           //nothing to do here, just test if the conenction could be established
+           conn.close();
+       } catch (SQLException e) {
+           if(e.getClass().toString().equals("class com.mysql.jdbc.exceptions.jdbc4.CommunicationsException")){            
+                logAndTerminate();
+            }
+       }
+   }
    
     /**
      * loads all actions associated with the given performance, region, role, enter/exit
@@ -50,7 +60,7 @@ public class DB {
      * @param enter 1 for enter, 0 for leave
      * @return List<Action> containing a list of actions or null
      */
-    public static List<Action> getActions(int performanceId, int regionId, int roleId, int enter){
+    public List<Action> getActions(int performanceId, int regionId, int roleId, int enter){
 
        //query to get all actions with the given parameters
        String getActions = String.format(
@@ -91,10 +101,24 @@ public class DB {
                 }
             }
         }catch(SQLException | ClassNotFoundException e){
+            //could not connect to database, shutting down
+            if(e.getClass().toString().equals("class com.mysql.jdbc.exceptions.jdbc4.CommunicationsException")){            
+                logAndTerminate();
+            }
+            
             LabDemLogger.LOGGER.log(Level.SEVERE, String.format(LabDemLogger.ERR_TEMPLATE, DB.class.getName(), e.getCause(), e.getMessage()));
             actions = null;
         }
         return actions;
    }
    
+    /**
+     * shut the application down if no connection to the db could be established
+     */
+    private void logAndTerminate(){
+        String m = LabDemLogger.DB_UNABLE_TO_CONNECT + LabDemLogger.TERMINATED;
+        LabDemLogger.LOGGER.log(Level.SEVERE, m);
+        System.exit(2);
+    }
+    
 }
