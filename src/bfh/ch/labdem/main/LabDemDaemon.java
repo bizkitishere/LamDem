@@ -80,7 +80,6 @@ public class LabDemDaemon {
             ACTION_EXEC.setActions(actions);
             TAExe = new Thread(ACTION_EXEC);
             TAExe.start();
-            
         //base thread is busy, use a new thread to execute the actions
         }else{            
             ActionExecuter tmpAExe = new ActionExecuter(pHW);

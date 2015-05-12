@@ -7,8 +7,6 @@ package bfh.ch.labdem.main;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Action;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -44,15 +42,14 @@ public class ActionExecuter implements Runnable{
                         try {
                             Thread.sleep(delay);
                         } catch (InterruptedException ex) {
-                            ex.printStackTrace();
-                            Logger.getLogger(LabDemDaemon.class.getName()).log(Level.SEVERE, null, ex);
+                            //nothing to do here
                         }
                     }
                     String m = a.getTypeId() + ";" + a.getName() + ";" + a.getCommand() + ";" + a.getValue();
                     publisher.Publish(m);
                 } catch (MqttException ex) {
                     //TODO something
-                    //Logger.getLogger(ActionExecuter.class.getName()).log(Level.SEVERE, null, ex);
+                    
                 }
         }
         
