@@ -6,7 +6,7 @@
 package model;
 
 /**
- * Class for DB table Action
+ * Class to store all relevant information for an action
  * @author Philippe Lüthi, Elia Kocher
  */
 public class Action {
@@ -18,7 +18,6 @@ public class Action {
     private final int typeId;
     
     public Action(String name, String command, String value, int delay, int typeId){
-        //this.id = id;
         this.name = name;
         this.command = command;
         this.value = value;
