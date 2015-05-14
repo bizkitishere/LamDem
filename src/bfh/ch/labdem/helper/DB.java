@@ -46,9 +46,12 @@ public class DB {
            //nothing to do here, just test if the conenction could be established
            conn.close();
        } catch (SQLException e) {
+           /*
            if(e.getClass().toString().equals("class com.mysql.jdbc.exceptions.jdbc4.CommunicationsException")){            
                 logAndTerminate();
             }
+           */
+           logAndTerminate(e);
        }
    }
    
@@ -58,7 +61,7 @@ public class DB {
      * @param regionId id of region
      * @param roleId id of role
      * @param enter 1 for enter, 0 for leave
-     * @return List<Action> containing a list of actions or null
+     * @return List<Action> containing a list of actions or null if the query did not fetch any rows
      */
     public List<Action> getActions(int performanceId, int regionId, int roleId, int enter){
 
@@ -102,12 +105,15 @@ public class DB {
             }
         }catch(SQLException | ClassNotFoundException e){
             //could not connect to database, shutting down
+            /*
             if(e.getClass().toString().equals("class com.mysql.jdbc.exceptions.jdbc4.CommunicationsException")){            
                 logAndTerminate();
             }
+            */
             
-            LabDemLogger.LOGGER.log(Level.SEVERE, String.format(LabDemLogger.ERR_TEMPLATE, DB.class.getName(), e.getCause(), e.getMessage()));
-            actions = null;
+            //LabDemLogger.LOGGER.log(Level.SEVERE, String.format(LabDemLogger.ERR_TEMPLATE, DB.class.getName(), e.getClass().getSimpleName(), e.getMessage()));
+            //actions = null;
+            logAndTerminate(e);
         }
         return actions;
    }
@@ -115,9 +121,12 @@ public class DB {
     /**
      * shut the application down if no connection to the db could be established
      */
-    private void logAndTerminate(){
-        String m = LabDemLogger.DB_UNABLE_TO_CONNECT + LabDemLogger.TERMINATED;
-        LabDemLogger.LOGGER.log(Level.SEVERE, m);
+    private void logAndTerminate(Exception e){
+        //String m = LabDemLogger.DB_UNABLE_TO_CONNECT + LabDemLogger.TERMINATED;
+        
+        LabDemLogger.LOGGER.log(Level.SEVERE, String.format(LabDemLogger.ERR_TEMPLATE, DB.class.getName(), e.getClass().getSimpleName(), e.getMessage()));
+        
+        //LabDemLogger.LOGGER.log(Level.SEVERE, m);
         System.exit(2);
     }
     

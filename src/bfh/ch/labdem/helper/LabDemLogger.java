@@ -13,9 +13,9 @@ import java.util.logging.SimpleFormatter;
 
 /**
  *
- * @author Philippe Lüthi, Elia Kocher
  * Class used to log into a single file, using a single logger
  * Contains strings for log messages
+ * @author Philippe Lüthi, Elia Kocher
  */
 public class LabDemLogger {
     
@@ -27,8 +27,8 @@ public class LabDemLogger {
     //
     //general
     public final static String STARTED = "Started";
-    //add class name, cause and message in String.format()
-    public final static String ERR_TEMPLATE = "%s  -  cause: %s  -  message: %s";
+    //add class name, exeption name and exeption message in String.format()
+    public final static String ERR_TEMPLATE = "class: %s  -  exeption: %s  -  message: %s";
     public final static String ERR_OFFLINE_TEMPLATE = "The following Service is offline: %s";
     public final static String TERMINATED = "Terminated\n";
     //MQTT
@@ -72,9 +72,9 @@ public class LabDemLogger {
             LOGGER.setUseParentHandlers(false);
             
         } catch (IOException | SecurityException ex) {
-            //not much we can do here...
+            //not much we can do here, the programm mustn't run without the logger
             //shut down
-            System.exit(-1);
+            System.exit(3);
         }
     }
     
