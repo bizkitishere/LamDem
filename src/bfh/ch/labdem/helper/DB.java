@@ -124,8 +124,7 @@ public class DB {
     private void logAndTerminate(Exception e){
         //String m = LabDemLogger.DB_UNABLE_TO_CONNECT + LabDemLogger.TERMINATED;
         
-        LabDemLogger.LOGGER.log(Level.SEVERE, String.format(LabDemLogger.ERR_TEMPLATE, DB.class.getName(), e.getClass().getSimpleName(), e.getMessage()));
-        
+        LabDemLogger.logErrTemplate(Level.SEVERE, DB.class.getSimpleName(), e.getClass().getSimpleName(), e.getMessage());
         //LabDemLogger.LOGGER.log(Level.SEVERE, m);
         System.exit(2);
     }

@@ -72,5 +72,5 @@ public abstract class Client {
     public void disconnectFromBroker() throws MqttException {
 	mqttClient.disconnect();
     }
-    
+
 }

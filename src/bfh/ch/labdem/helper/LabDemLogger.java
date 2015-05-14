@@ -8,6 +8,7 @@ package bfh.ch.labdem.helper;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.FileHandler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
@@ -76,6 +77,17 @@ public class LabDemLogger {
             //shut down
             System.exit(3);
         }
+    }
+    
+    /**
+     * logs a standard error, using a template, the log entry will be formatted using the template provided within the logger class
+     * @param lvl log level
+     * @param className name of the class where the exception occured
+     * @param exName exception class name
+     * @param exMsg  exception message
+     */
+    public static void logErrTemplate(Level lvl, String className, String exName, String exMsg){
+        LOGGER.log(lvl, String.format(ERR_TEMPLATE, DB.class.getName(), exName, exMsg));
     }
     
 }

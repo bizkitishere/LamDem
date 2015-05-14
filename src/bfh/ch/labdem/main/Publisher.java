@@ -10,7 +10,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 /**
- * Used to send messages to a MQTT broker
+ * Sends messages to a MQTT broker
  * 
  * @author Philippe Lüthi, Elia Kocher
  */

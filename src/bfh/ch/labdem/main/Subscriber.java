@@ -16,7 +16,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 /**
- * Used to receive messages from a MQTT broker
+ * Receives messages from a MQTT broker
  * 
  * @author Philippe Lüthi, Elia Kocher
  */
@@ -54,12 +54,7 @@ public class Subscriber extends Client {
 
         @Override
         public void connectionLost(Throwable thrwbl) {
-            //System.out.println("Connection Lost...");
-            //System.out.println(thrwbl.getCause());
-            //System.out.println(thrwbl.getMessage());
-            String m = Subscriber.class.getName() + "\nCause: " + thrwbl.getCause() + " Message: " + thrwbl.getMessage();
-            LabDemLogger.LOGGER.log(Level.SEVERE, m);
-            
+            LabDemLogger.logErrTemplate(Level.SEVERE, Subscriber.class.getSimpleName(), thrwbl.getClass().getSimpleName(), thrwbl.getMessage());
             //tries to reconnect the subscriber to the broker
             BfhChLabDem.reconnect(Subscriber.this);
         }
@@ -106,7 +101,7 @@ public class Subscriber extends Client {
                 enter = Integer.parseInt(tokens[3]);
                 BfhChLabDem.getActions(performanceId, regionId, roleId, enter);
             }catch (NumberFormatException ex){
-                String m = Subscriber.class.getName() + " - Topic: " + TOPIC + " - " + ex.getMessage() + " -  Message: " + message;
+                String m = Subscriber.class.getSimpleName()+ " - Topic: " + TOPIC + " - " + ex.getMessage() + " -  Message: " + message;
                 LabDemLogger.LOGGER.log(Level.WARNING, m);
             }
         }

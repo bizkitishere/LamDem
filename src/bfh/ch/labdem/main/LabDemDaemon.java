@@ -37,48 +37,70 @@ public class LabDemDaemon {
     private List<Action> actions = null;
     
     //MQTT publisher and subscriber
-    private final Subscriber sApp, sHW;
-    private final Publisher pApp, pHW;
+    private Subscriber sApp = null, sHW = null;
+    private Publisher pApp = null, pHW = null;
     
     //threads
-    private final ActionExecuter ACTION_EXEC;
+    private ActionExecuter actionExec = null;
     private Thread TAExe = null;
     
     //db connection
     private final DB db;
     
-    public LabDemDaemon() throws MqttException{
+    /**
+     * Constructor
+     * tries to create a connection to the database, if the connection could not successfully be established, the program will terminate
+     * tries to connect to a MQTT broker, will terminate if the connection could not be established
+     */
+    public LabDemDaemon(){
+        
         //setup DB
         db = new DB();
         
-        //setup MQTT
-        pApp = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_SERVER2APP, WILL_SERVER2APP, BfhChLabDem.ClientType.Publisher);
-        pApp.connectToBroker();
-        pApp.Publish(MQTTMessages.Online.toString(), 1, true);
-        sApp = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_APP2SERVER, WILL_SERVER2APP, BfhChLabDem.ClientType.Subscriber);
-        sApp.connectToBroker();
-        sApp.subscribe();
-        pHW = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_SERVER2HW, WILL, BfhChLabDem.ClientType.Publisher);
-        pHW.connectToBroker();
-        pHW.Publish(MQTTMessages.Online.toString(), 1, true);
-        sHW = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_HW2SERVER, WILL, BfhChLabDem.ClientType.Subscriber);
-        sHW.connectToBroker();
-        sHW.subscribe();
-        
-        //prepare threads
-        ACTION_EXEC = new ActionExecuter(pHW);
+        try {
+            //setup MQTT
+            pApp = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_SERVER2APP, WILL_SERVER2APP, BfhChLabDem.ClientType.Publisher);
+            pApp.connectToBroker();
+            pApp.Publish(MQTTMessages.Online.toString(), 1, true);
+            sApp = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_APP2SERVER, WILL_SERVER2APP, BfhChLabDem.ClientType.Subscriber);
+            sApp.connectToBroker();
+            sApp.subscribe();
+            pHW = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_SERVER2HW, WILL, BfhChLabDem.ClientType.Publisher);
+            pHW.connectToBroker();
+            pHW.Publish(MQTTMessages.Online.toString(), 1, true);
+            sHW = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_HW2SERVER, WILL, BfhChLabDem.ClientType.Subscriber);
+            sHW.connectToBroker();
+            sHW.subscribe();
+            
+            //prepare threads
+            actionExec = new ActionExecuter(pHW);
+        } catch (MqttException ex) {
+            Logger.getLogger(LabDemDaemon.class.getName()).log(Level.SEVERE, null, ex);
+            LabDemLogger.logErrTemplate(Level.SEVERE, LabDemDaemon.class.getSimpleName(), ex.getClass().getSimpleName(), ex.getMessage());
+            LabDemLogger.LOGGER.log(Level.SEVERE, "Could not initialise daemon... " + LabDemLogger.TERMINATED);
+            System.exit(1);
+        }
     }
     
+    /**
+     * gets the actions for the given parameters from the database
+     * @param performanceId id of the performance
+     * @param regionId id of the region
+     * @param roleId id of the role
+     * @param enter  enter (1) or exit (0)
+     */
     public void getActions(int performanceId, int regionId, int roleId, int enter){
         actions = db.getActions(performanceId, regionId, roleId, enter);
     }
     
-    public void executeActions() throws MqttException{
-        
-        //use base thread if it runs for the first time or if it finished its work
+    /**
+     * executes the actions that were fetches from getActions()
+     */
+    public void executeActions(){
+        //use base thread if it runs for the first time or if it terminated
         if(TAExe == null || TAExe.getState() == Thread.State.TERMINATED){
-            ACTION_EXEC.setActions(actions);
-            TAExe = new Thread(ACTION_EXEC);
+            actionExec.setActions(actions);
+            TAExe = new Thread(actionExec);
             TAExe.start();
         //base thread is busy, use a new thread to execute the actions
         }else{            
@@ -95,28 +117,37 @@ public class LabDemDaemon {
      * The application will terminate if the reconnect is not possible
      */
     public void reconnect(Client c){
-        LabDemLogger.LOGGER.info(String.format(LabDemLogger.RECONNECT_ATTEMPT, c.getClass().getName()));
+        LabDemLogger.LOGGER.info(String.format(LabDemLogger.RECONNECT_ATTEMPT, c.getClass().getSimpleName()));
         
         try {
             c.connectToBroker();
+            //subscribers need to subscribe to their topic once again
             if(c.TYPE == ClientType.Subscriber){
                 Subscriber s = (Subscriber) c;
                 s.subscribe();
             }
             LabDemLogger.LOGGER.info(LabDemLogger.RECONNECT_SUCCESSFULL);
         } catch (MqttException ex) {
-            LabDemLogger.LOGGER.log(Level.SEVERE, LabDemLogger.RECONNECT_FAILED);
+            LabDemLogger.logErrTemplate(Level.SEVERE, LabDemDaemon.class.getSimpleName(), ex.getClass().getSimpleName(), ex.getMessage());
+            LabDemLogger.LOGGER.log(Level.SEVERE, LabDemLogger.RECONNECT_FAILED + "\n" + LabDemLogger.TERMINATED);
             System.exit(1);
         }
     }
     
+    /**
+     * publishes a message to the app (topic: LabDem/Server2App)
+     * uses Quality of service 1
+     * shuts the program down if the message could not be sent
+     * @param m message to publish
+     */
     public void publishToApp(String m){
         try {
             pApp.Publish(m, 1, true);
         } catch (MqttException ex) {
             //cannot notify app that another service is not running, shutting down
-            //System.exit(1);
-            Logger.getLogger(LabDemDaemon.class.getName()).log(Level.SEVERE, null, ex);
+            LabDemLogger.logErrTemplate(Level.SEVERE, LabDemDaemon.class.getSimpleName(), ex.getClass().getSimpleName(), ex.getMessage());
+            LabDemLogger.LOGGER.log(Level.SEVERE, LabDemLogger.TERMINATED);
+            System.exit(1);
         }
     }
     
