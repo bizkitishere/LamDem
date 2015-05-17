@@ -46,11 +46,7 @@ public class DB {
            //nothing to do here, just test if the conenction could be established
            conn.close();
        } catch (SQLException e) {
-           /*
-           if(e.getClass().toString().equals("class com.mysql.jdbc.exceptions.jdbc4.CommunicationsException")){            
-                logAndTerminate();
-            }
-           */
+           //problem with database, shut program down
            logAndTerminate(e);
        }
    }
@@ -104,15 +100,7 @@ public class DB {
                 }
             }
         }catch(SQLException | ClassNotFoundException e){
-            //could not connect to database, shutting down
-            /*
-            if(e.getClass().toString().equals("class com.mysql.jdbc.exceptions.jdbc4.CommunicationsException")){            
-                logAndTerminate();
-            }
-            */
-            
-            //LabDemLogger.LOGGER.log(Level.SEVERE, String.format(LabDemLogger.ERR_TEMPLATE, DB.class.getName(), e.getClass().getSimpleName(), e.getMessage()));
-            //actions = null;
+            //error with database, shut program down
             logAndTerminate(e);
         }
         return actions;
@@ -122,10 +110,8 @@ public class DB {
      * shut the application down if no connection to the db could be established
      */
     private void logAndTerminate(Exception e){
-        //String m = LabDemLogger.DB_UNABLE_TO_CONNECT + LabDemLogger.TERMINATED;
-        
         LabDemLogger.logErrTemplate(Level.SEVERE, DB.class.getSimpleName(), e.getClass().getSimpleName(), e.getMessage());
-        //LabDemLogger.LOGGER.log(Level.SEVERE, m);
+        LabDemLogger.LOGGER.log(Level.SEVERE, LabDemLogger.TERMINATED);
         System.exit(2);
     }
     
