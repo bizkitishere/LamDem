@@ -28,8 +28,8 @@ public class LabDemLogger {
     //
     //general
     public final static String STARTED = "Started";
-    //add class name, exeption name and exeption message in String.format()
-    public final static String ERR_TEMPLATE = "class: %s  -  exeption: %s  -  message: %s";
+    //add class name, exeption name and exception message in String.format()
+    public final static String ERR_TEMPLATE = "class: %s  -  exception: %s  -  message: %s";
     public final static String ERR_OFFLINE_TEMPLATE = "The following Service is offline: %s";
     public final static String TERMINATED = "Terminated\n";
     //MQTT

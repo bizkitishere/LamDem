@@ -54,7 +54,7 @@ public class LabDemDaemon {
      */
     public LabDemDaemon(){
         
-        //setup DB
+        //setup DB, terminates if there is an error
         db = new DB();
         
         try {
@@ -75,8 +75,8 @@ public class LabDemDaemon {
             //prepare threads
             actionExec = new ActionExecuter(pHW);
         } catch (MqttException ex) {
-            Logger.getLogger(LabDemDaemon.class.getName()).log(Level.SEVERE, null, ex);
-            LabDemLogger.logErrTemplate(Level.SEVERE, LabDemDaemon.class.getSimpleName(), ex.getClass().getSimpleName(), ex.getMessage());
+            //if(ex.getClass().getSimpleName() ==)
+            LabDemLogger.logErrTemplate(Level.SEVERE, LabDemDaemon.class.getSimpleName(), ex.getClass().getSimpleName(), ex.getCause().toString());
             LabDemLogger.LOGGER.log(Level.SEVERE, "Could not initialise daemon... " + LabDemLogger.TERMINATED);
             System.exit(1);
         }

@@ -158,3 +158,47 @@ Mai 17, 2015 11:51:25 AM bfh.ch.labdem.main.BfhChLabDem main
 INFO: Started
 Mai 17, 2015 11:51:31 AM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
 SEVERE: class: bfh.ch.labdem.helper.DB  -  exeption: MySQLSyntaxErrorException  -  message: Unknown column 'delay2' in 'field list'
+Mai 17, 2015 11:56:27 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 17, 2015 11:56:27 AM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 17, 2015 11:58:13 AM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 17, 2015 12:06:44 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 17, 2015 12:06:44 PM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 17, 2015 12:11:36 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 17, 2015 12:11:36 PM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 17, 2015 12:13:32 PM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 17, 2015 12:13:32 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 17, 2015 12:15:19 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: bfh.ch.labdem.helper.DB  -  exeption: MqttException  -  message: MqttException
+Mai 17, 2015 12:15:19 PM bfh.ch.labdem.main.LabDemDaemon <init>
+SEVERE: Could not initialise daemon... Terminated
+
+Mai 17, 2015 12:17:01 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: bfh.ch.labdem.helper.DB  -  exception: MqttException  -  message: MqttException
+Mai 17, 2015 12:17:01 PM bfh.ch.labdem.main.LabDemDaemon <init>
+SEVERE: Could not initialise daemon... Terminated
+
+Mai 17, 2015 12:18:47 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: bfh.ch.labdem.helper.DB  -  exception: MqttException  -  message: localhost2
+Mai 17, 2015 12:18:47 PM bfh.ch.labdem.main.LabDemDaemon <init>
+SEVERE: Could not initialise daemon... Terminated
+
+Mai 17, 2015 12:20:17 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: bfh.ch.labdem.helper.DB  -  exception: MqttException  -  message: localhost2
+Mai 17, 2015 12:22:57 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: bfh.ch.labdem.helper.DB  -  exception: MqttException  -  message: java.net.UnknownHostException: localhost2
+Mai 17, 2015 12:22:57 PM bfh.ch.labdem.main.LabDemDaemon <init>
+SEVERE: Could not initialise daemon... Terminated
+
+Mai 17, 2015 12:23:49 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 17, 2015 12:23:49 PM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
