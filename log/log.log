@@ -202,3 +202,127 @@ Mai 17, 2015 12:23:49 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messag
 WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
 Mai 17, 2015 12:23:49 PM bfh.ch.labdem.main.BfhChLabDem main
 INFO: Started
+Mai 18, 2015 7:14:21 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 18, 2015 7:14:21 PM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 18, 2015 7:17:47 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 18, 2015 7:17:47 PM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 18, 2015 7:22:42 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 18, 2015 7:22:42 PM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 18, 2015 7:23:43 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 18, 2015 7:23:43 PM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 18, 2015 7:25:17 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 18, 2015 7:25:17 PM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 18, 2015 7:27:17 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 18, 2015 7:27:17 PM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 18, 2015 7:37:15 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 18, 2015 7:37:15 PM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 18, 2015 7:45:28 PM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 18, 2015 7:46:09 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "hoi" -  Message: hoi
+Mai 18, 2015 7:47:28 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: bfh.ch.labdem.helper.DB  -  exception: MqttException  -  message: Connection lost
+Mai 18, 2015 7:47:28 PM bfh.ch.labdem.main.LabDemDaemon reconnect
+INFO: Attempting to reconnect: Subscriber
+Mai 18, 2015 7:47:28 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: bfh.ch.labdem.helper.DB  -  exception: MqttException  -  message: MqttException
+Mai 18, 2015 7:47:28 PM bfh.ch.labdem.main.LabDemDaemon reconnect
+SEVERE: Reconnection failed
+Terminated
+
+Mai 18, 2015 7:48:38 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: bfh.ch.labdem.helper.DB  -  exception: MqttException  -  message: java.net.UnknownHostException: broker.mqttdashboard.com
+Mai 18, 2015 7:48:38 PM bfh.ch.labdem.main.LabDemDaemon <init>
+SEVERE: Could not initialise daemon... Terminated
+
+Mai 18, 2015 7:49:39 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: LabDemDaemon  -  exception: MqttException  -  message: java.net.UnknownHostException: broker.mqttdashboard.com
+Mai 18, 2015 7:49:39 PM bfh.ch.labdem.main.LabDemDaemon <init>
+SEVERE: Could not initialise daemon... Terminated
+
+Mai 18, 2015 7:50:40 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: LabDemDaemon  -  exception: MqttException  -  message: java.net.UnknownHostException: broker.mqttdashboard.com
+Mai 18, 2015 7:50:40 PM bfh.ch.labdem.main.LabDemDaemon <init>
+SEVERE: Could not initialise daemon... Terminated
+
+Mai 18, 2015 7:51:13 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: LabDemDaemon  -  exception: MqttException  -  message: java.net.UnknownHostException: broker.mqttdashboard.com
+Mai 18, 2015 7:51:13 PM bfh.ch.labdem.main.LabDemDaemon <init>
+SEVERE: Could not initialise daemon... Terminated
+
+Mai 18, 2015 7:55:21 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: LabDemDaemon  -  exception: MqttException  -  message: java.net.UnknownHostException: broker.mqttdashboard.com
+Mai 18, 2015 7:55:21 PM bfh.ch.labdem.main.LabDemDaemon <init>
+SEVERE: Could not initialise daemon... Terminated
+
+Mai 18, 2015 7:56:04 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: LabDemDaemon  -  exception: MqttException  -  message: java.net.UnknownHostException: broker.mqttdashboard.com
+Mai 18, 2015 7:56:04 PM bfh.ch.labdem.main.LabDemDaemon <init>
+SEVERE: Could not initialise daemon... Terminated
+
+Mai 18, 2015 8:08:03 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 18, 2015 8:08:04 PM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 18, 2015 8:31:46 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 18, 2015 8:31:47 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/HW2Server - For input string: "Offline" -  Message: Offline
+Mai 18, 2015 8:31:47 PM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 18, 2015 8:33:05 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: Subscriber  -  exception: MqttException  -  message: Connection lost
+Mai 18, 2015 8:33:05 PM bfh.ch.labdem.main.LabDemDaemon reconnect
+INFO: Attempting to reconnect: Subscriber - LabDem/App2Server
+Mai 18, 2015 8:33:05 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: LabDemDaemon  -  exception: MqttException  -  message: MqttException
+Mai 18, 2015 8:33:05 PM bfh.ch.labdem.main.LabDemDaemon reconnect
+SEVERE: Reconnection failed
+Terminated
+
+Mai 18, 2015 8:35:07 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 18, 2015 8:35:07 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/HW2Server - For input string: "Offline" -  Message: Offline
+Mai 18, 2015 8:35:07 PM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 18, 2015 8:36:26 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: Subscriber  -  exception: MqttException  -  message: Connection lost
+Mai 18, 2015 8:36:26 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: Subscriber  -  exception: MqttException  -  message: Connection lost
+Mai 18, 2015 8:39:04 PM bfh.ch.labdem.main.LabDemDaemon reconnect
+INFO: Attempting to reconnect: Subscriber - LabDem/HW2Server
+Mai 18, 2015 8:39:45 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: LabDemDaemon  -  exception: MqttException  -  message: MqttException
+Mai 18, 2015 8:39:46 PM bfh.ch.labdem.main.LabDemDaemon reconnect
+SEVERE: Reconnection failed
+Terminated
+
+Mai 18, 2015 8:42:36 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 18, 2015 8:42:36 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/HW2Server - For input string: "Offline" -  Message: Offline
+Mai 18, 2015 8:42:36 PM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 18, 2015 8:43:55 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: Subscriber  -  exception: MqttException  -  message: Connection lost
+Mai 18, 2015 8:43:55 PM bfh.ch.labdem.main.LabDemDaemon reconnect
+INFO: Attempting to reconnect: Subscriber - LabDem/App2Server
+Mai 18, 2015 8:43:55 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: LabDemDaemon  -  exception: org.eclipse.paho.client.mqttv3.MqttException  -  message: MqttException
+Mai 18, 2015 8:43:55 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: LabDemDaemon  -  exception: org.eclipse.paho.client.mqttv3.MqttException  -  message: java.net.UnknownHostException: broker.mqttdashboard.com

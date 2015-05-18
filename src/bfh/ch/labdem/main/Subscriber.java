@@ -22,11 +22,9 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
  */
 public class Subscriber extends Client {
     
-    //client parameters
-    private final MqttCallback MESSAGE_HANDLER = new MQTTMessageHandler();
-    
     public Subscriber(String protocol, String broker, String port, String topic, String will, ClientType type) throws MqttException{
         super(protocol, broker, port, topic, will, type);
+        msgHandler = new MQTTMessageHandler();
     }
     
     /**
@@ -34,7 +32,7 @@ public class Subscriber extends Client {
      * @throws MqttException 
      */
     public void subscribe() throws MqttException{
-        mqttClient.setCallback(MESSAGE_HANDLER);
+        mqttClient.setCallback(msgHandler);
         mqttClient.subscribe(TOPIC);
     }
     
@@ -50,7 +48,7 @@ public class Subscriber extends Client {
     /**
      * Handles the arriving messages, connection loss and complete delivery
      */
-    class MQTTMessageHandler implements MqttCallback{
+    private class MQTTMessageHandler implements MqttCallback{
 
         @Override
         public void connectionLost(Throwable thrwbl) {
@@ -62,18 +60,13 @@ public class Subscriber extends Client {
         @Override
         //messega that is called when a new mqtt message arrives
         public void messageArrived(String string, MqttMessage mm) throws MqttException {            
-            //System.out.printf("Topic: (%s) Payload: (%s) Retained: (%b) \n", string, new String(mm.getPayload()), mm.isRetained());
-
             String message = new String(mm.getPayload());
             
             //check if the received message is the online or offline status
             if(message.equals(MQTTMessages.Online.toString())){
-                //TODO implement
+                //nothing to do, everything is ok
                 return;
-            }else if(message.equals(MQTTMessages.Offline.toString())){
-                //TODO implement
-                return;
-                //lamp service is offline, can not turn lamps on or off anymore
+            //lamp service is offline, can not turn lamps on or off anymore
             }else if(message.equals(MQTTMessages.LampServletOffline.toString())){
                 //send message to app
                 BfhChLabDem.publishToApp(MQTTMessages.Error + ";" + MQTTMessages.LampServletOffline.toString() + ";");
@@ -108,8 +101,7 @@ public class Subscriber extends Client {
 
         @Override
         public void deliveryComplete(IMqttDeliveryToken imdt) {
-            //TODO implement
-            System.out.println("Delivery Complete...");
+            //not needed since this class will not publish messages
         }
         
     }

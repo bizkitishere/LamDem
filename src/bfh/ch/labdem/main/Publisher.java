@@ -5,7 +5,11 @@
  */
 package bfh.ch.labdem.main;
 
+import bfh.ch.labdem.helper.LabDemLogger;
 import bfh.ch.labdem.main.BfhChLabDem.ClientType;
+import java.util.logging.Level;
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
@@ -21,6 +25,7 @@ public class Publisher extends Client {
     
     public Publisher(String protocol, String broker, String port, String topic, String will, ClientType type) throws MqttException {
         super(protocol, broker, port, topic, will, type);
+        msgHandler = new MQTTMessageHandler();
     }
     
     /**
@@ -44,6 +49,28 @@ public class Publisher extends Client {
         mqttClient.publish(TOPIC, m.getBytes(), qos, retained);
     }
     
-    //TODO add callback!!!
-    
+    /**
+     * Handles the arriving messages, connection loss and complete delivery
+     */
+    private class MQTTMessageHandler implements MqttCallback{
+
+        @Override
+        public void connectionLost(Throwable thrwbl) {
+            LabDemLogger.logErrTemplate(Level.SEVERE, Publisher.class.getSimpleName(), thrwbl.getClass().getSimpleName(), thrwbl.getMessage());
+            //tries to reconnect the subscriber to the broker
+            BfhChLabDem.reconnect(Publisher.this);
+        }
+
+        @Override
+        //messega that is called when a new mqtt message arrives
+        public void messageArrived(String string, MqttMessage mm) throws MqttException {            
+            //not needed, since this class will not receive messages
+        }
+
+        @Override
+        public void deliveryComplete(IMqttDeliveryToken imdt) {
+            //nothing to do when the message could be delivered
+        }
+        
+    }
 }

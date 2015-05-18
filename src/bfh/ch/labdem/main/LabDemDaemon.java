@@ -11,7 +11,6 @@ import bfh.ch.labdem.main.BfhChLabDem.ClientType;
 import bfh.ch.labdem.main.BfhChLabDem.MQTTMessages;
 import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Action;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
@@ -33,7 +32,6 @@ public class LabDemDaemon {
     private final String WILL = MQTTMessages.Offline.toString();
     private final String WILL_SERVER2APP = "Error;" + MQTTMessages.OfflineDaemon + ";" + "Daemon is offline and needs to be restarted";
     
-
     private List<Action> actions = null;
     
     //MQTT publisher and subscriber
@@ -75,8 +73,13 @@ public class LabDemDaemon {
             //prepare threads
             actionExec = new ActionExecuter(pHW);
         } catch (MqttException ex) {
-            //if(ex.getClass().getSimpleName() ==)
-            LabDemLogger.logErrTemplate(Level.SEVERE, LabDemDaemon.class.getSimpleName(), ex.getClass().getSimpleName(), ex.getCause().toString());
+            //log and terminate
+            if(ex.getCause() == null){
+                LabDemLogger.logErrTemplate(Level.SEVERE, LabDemDaemon.class.getSimpleName(), ex.getClass().getName(), ex.getMessage());
+            }else{
+                LabDemLogger.logErrTemplate(Level.SEVERE, LabDemDaemon.class.getSimpleName(), ex.getClass().getName(), ex.getCause().toString());
+            }
+            
             LabDemLogger.LOGGER.log(Level.SEVERE, "Could not initialise daemon... " + LabDemLogger.TERMINATED);
             System.exit(1);
         }
@@ -117,7 +120,7 @@ public class LabDemDaemon {
      * The application will terminate if the reconnect is not possible
      */
     public void reconnect(Client c){
-        LabDemLogger.LOGGER.info(String.format(LabDemLogger.RECONNECT_ATTEMPT, c.getClass().getSimpleName()));
+        LabDemLogger.LOGGER.info(String.format(LabDemLogger.RECONNECT_ATTEMPT, c.getClass().getSimpleName() + " - " + c.TOPIC));
         
         try {
             c.connectToBroker();
@@ -128,7 +131,11 @@ public class LabDemDaemon {
             }
             LabDemLogger.LOGGER.info(LabDemLogger.RECONNECT_SUCCESSFULL);
         } catch (MqttException ex) {
-            LabDemLogger.logErrTemplate(Level.SEVERE, LabDemDaemon.class.getSimpleName(), ex.getClass().getSimpleName(), ex.getMessage());
+            if(ex.getCause() == null){
+                LabDemLogger.logErrTemplate(Level.SEVERE, LabDemDaemon.class.getSimpleName(), ex.getClass().getName(), ex.getMessage());
+            }else{
+                LabDemLogger.logErrTemplate(Level.SEVERE, LabDemDaemon.class.getSimpleName(), ex.getClass().getName(), ex.getCause().toString());
+            }
             LabDemLogger.LOGGER.log(Level.SEVERE, LabDemLogger.RECONNECT_FAILED + "\n" + LabDemLogger.TERMINATED);
             System.exit(1);
         }
@@ -145,7 +152,11 @@ public class LabDemDaemon {
             pApp.Publish(m, 1, true);
         } catch (MqttException ex) {
             //cannot notify app that another service is not running, shutting down
-            LabDemLogger.logErrTemplate(Level.SEVERE, LabDemDaemon.class.getSimpleName(), ex.getClass().getSimpleName(), ex.getMessage());
+            if(ex.getCause() == null){
+                LabDemLogger.logErrTemplate(Level.SEVERE, LabDemDaemon.class.getSimpleName(), ex.getClass().getName(), ex.getMessage());
+            }else{
+                LabDemLogger.logErrTemplate(Level.SEVERE, LabDemDaemon.class.getSimpleName(), ex.getClass().getName(), ex.getCause().toString());
+            }
             LabDemLogger.LOGGER.log(Level.SEVERE, LabDemLogger.TERMINATED);
             System.exit(1);
         }

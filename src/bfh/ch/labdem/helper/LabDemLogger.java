@@ -87,7 +87,7 @@ public class LabDemLogger {
      * @param exMsg  exception message
      */
     public static void logErrTemplate(Level lvl, String className, String exName, String exMsg){
-        LOGGER.log(lvl, String.format(ERR_TEMPLATE, DB.class.getName(), exName, exMsg));
+        LOGGER.log(lvl, String.format(ERR_TEMPLATE, className, exName, exMsg));
     }
     
 }
