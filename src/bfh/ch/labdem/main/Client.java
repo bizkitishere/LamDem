@@ -61,8 +61,7 @@ public abstract class Client {
      */
     public void connectToBroker() throws MqttException {
         MqttConnectOptions connectOptions = new MqttConnectOptions();
-        connectOptions.setWill(TOPIC, WILL.getBytes(), 1, true);
-        //connectOptions.setConnectionTimeout(15);
+        if(WILL != null) connectOptions.setWill(TOPIC, WILL.getBytes(), 1, true);
 	mqttClient.connect(connectOptions);
     }
 

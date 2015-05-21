@@ -63,10 +63,10 @@ public class LabDemDaemon {
             sApp = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_APP2SERVER, WILL_SERVER2APP, BfhChLabDem.ClientType.Subscriber);
             sApp.connectToBroker();
             sApp.subscribe();
-            pHW = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_SERVER2HW, WILL, BfhChLabDem.ClientType.Publisher);
+            pHW = new Publisher(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_SERVER2HW, null, BfhChLabDem.ClientType.Publisher);
             pHW.connectToBroker();
             pHW.Publish(MQTTMessages.Online.toString(), 1, true);
-            sHW = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_HW2SERVER, WILL, BfhChLabDem.ClientType.Subscriber);
+            sHW = new Subscriber(PROTOCOL, BROKER, PORT, TOPIC_MAIN + TOPIC_HW2SERVER, null, BfhChLabDem.ClientType.Subscriber);
             sHW.connectToBroker();
             sHW.subscribe();
             
