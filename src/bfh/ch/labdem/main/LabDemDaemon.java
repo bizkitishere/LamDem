@@ -149,7 +149,7 @@ public class LabDemDaemon {
      */
     public void publishToApp(String m){
         try {
-            pApp.Publish(m, 1, true);
+            pApp.Publish(m, 1, false);
         } catch (MqttException ex) {
             //cannot notify app that another service is not running, shutting down
             if(ex.getCause() == null){
