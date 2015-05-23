@@ -326,3 +326,14 @@ Mai 18, 2015 8:43:55 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
 SEVERE: class: LabDemDaemon  -  exception: org.eclipse.paho.client.mqttv3.MqttException  -  message: MqttException
 Mai 18, 2015 8:43:55 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
 SEVERE: class: LabDemDaemon  -  exception: org.eclipse.paho.client.mqttv3.MqttException  -  message: java.net.UnknownHostException: broker.mqttdashboard.com
+Mai 23, 2015 1:30:48 PM bfh.ch.labdem.helper.LabDemLogger logErrTemplate
+SEVERE: class: PropertiesLoader  -  exception: FileNotFoundException  -  message: LabDem.properties (The system cannot find the file specified)
+Mai 23, 2015 1:30:48 PM bfh.ch.labdem.helper.PropertiesLoader <clinit>
+SEVERE: Terminated
+
+Mai 23, 2015 1:44:15 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/App2Server - For input string: "Error" -  Message: Error;OfflineDaemon;Daemon is offline and needs to be restarted
+Mai 23, 2015 1:44:15 PM bfh.ch.labdem.main.BfhChLabDem main
+INFO: Started
+Mai 23, 2015 1:44:15 PM bfh.ch.labdem.main.Subscriber$MQTTMessageHandler messageArrived
+WARNING: Subscriber - Topic: LabDem/HW2Server - For input string: "Offline" -  Message: Offline

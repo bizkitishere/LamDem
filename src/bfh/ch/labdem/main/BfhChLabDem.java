@@ -86,4 +86,14 @@ public class BfhChLabDem {
         AdHocHUE
     }
     
+    /**
+     * enum containing the keys found in the properties file
+     */
+    public enum PropertyKeys{
+        DBUser,
+        DBPass,
+        MQTTUser,
+        MQTTPass
+    }
+    
 }

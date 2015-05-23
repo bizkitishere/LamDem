@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package bfh.ch.labdem.helper;
+import bfh.ch.labdem.main.BfhChLabDem.PropertyKeys;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +22,8 @@ public class DB {
    private final String DB_URL = "jdbc:mysql://localhost/apodeixis_db";
 
    //Database credentials
-   private final String USER = "apodeixisUser";
-   private final String PASS = "userPassApo15";   
+   private final String USER;
+   private final String PASS;
    
    //db views
    private final String DAEMONVIEW = "daemonview";
@@ -41,6 +42,11 @@ public class DB {
    private final String ACTIONS_SELECT = HW_NAME + "," + COMMAND + "," + VALUE + "," + DELAY + "," + TYPE_ID;
    
    public DB(){
+       //get user and password
+       USER = PropertiesLoader.getProperty(PropertyKeys.DBUser.toString());
+       PASS = PropertiesLoader.getProperty(PropertyKeys.DBPass.toString());
+       
+       
        //try to connect to db
        try (Connection conn = DriverManager.getConnection(DB_URL,USER,PASS)){
            //nothing to do here, just test if the conenction could be established
@@ -57,7 +63,7 @@ public class DB {
      * @param regionId id of region
      * @param roleId id of role
      * @param enter 1 for enter, 0 for leave
-     * @return List<Action> containing a list of actions or null if the query did not fetch any rows
+     * @return List containing a list of actions or null if the query did not fetch any rows
      */
     public List<Action> getActions(int performanceId, int regionId, int roleId, int enter){
 

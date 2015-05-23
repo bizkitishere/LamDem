@@ -5,7 +5,9 @@
  */
 package bfh.ch.labdem.main;
 
+import bfh.ch.labdem.helper.PropertiesLoader;
 import bfh.ch.labdem.main.BfhChLabDem.ClientType;
+import bfh.ch.labdem.main.BfhChLabDem.PropertyKeys;
 import java.net.URI;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
@@ -29,15 +31,15 @@ public abstract class Client {
     final String WILL;
     
     //password for mqtt
-    private final String USER = "apodeixisMQTTUser";
-    private final String PASS = "MQTTPass7";
+    private final String USER;
+    private final String PASS;
     
     //client parameters
     final MqttClient mqttClient;
     MqttCallback msgHandler;
     
     /**
-     * 
+     * Constructor
      * @param protocol protocol to use
      * @param broker broker name
      * @param port port to connect
@@ -55,6 +57,10 @@ public abstract class Client {
         this.TYPE = type;
         this.BROKER_URI = URI.create(protocol + "://" + broker + ":" + port);
         this.CON_ID = broker + "." + topic + "." + "Server" + "." + TYPE.toString();
+        
+        //get username and password
+        USER = PropertiesLoader.getProperty(PropertyKeys.MQTTUser.toString());
+        PASS = PropertiesLoader.getProperty(PropertyKeys.MQTTPass.toString());
         
         mqttClient = new MqttClient(BROKER_URI.toString(), CON_ID);
     }
